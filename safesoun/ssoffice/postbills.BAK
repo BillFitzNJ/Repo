@@ -1,0 +1,1269 @@
+**************
+*BILLCLOSE.PRG
+**************
+*-- Post Bills
+#include GLOBAL.h
+#include EVENTS.h
+
+**********************
+PRIVATE ll_cont, ;
+lc_lastinvno, ;
+ln_invamt, ;
+lc_updinvno, ;
+ld_invdte, ;
+ln_upddst, ;
+lc_tranno, ;
+ln_compdid, ;
+lc_cshact, ;
+lc_sessno, ;
+ln_cntrl, ;
+la_sesstat, ;
+ln_tottax, ;
+ln_totminv, ;
+ln_totinv, ;
+ln_totbal, ;
+ln_noinv, ;
+ln_updsess, ;
+ln_invtax, ;
+ll_invoice
+PRIVATE la_arcust
+
+ln_invamt = 0
+ln_invtax = 0
+ll_invoice = .T.
+lc_updinvno = ""
+ld_invdte = {}
+ln_upddst = 0
+lc_tranno = Cc_NullStr
+lc_cshact = Cc_NullStr
+ln_cntrl = 6
+lc_sessno = Cc_NullStr
+ln_tottax = 0
+ln_totminv = 0
+ln_totinv = 0
+ln_totbal = 0
+ln_noinv = 0
+ln_updsess = 0
+
+PRIVATE la_sessarray
+*-- Create a session array for 99 companies
+DECLARE la_sessarray [99]
+DECLARE la_sesstat[8, 2]
+la_sesstat = "0"
+*-- Clear the session array
+la_sessarray = ""
+
+
+*-- Set labels
+la_sesstat[1,1] = "Number of invoices "
+la_sesstat[2,1] = "Value of sales     "
+la_sesstat[3,1] = "Sales tax          "
+la_sesstat[4,1] = "Cost of goods      "
+la_sesstat[5,1] = "Cash received      "
+la_sesstat[6,1] = "Amount posted to AR"
+la_sesstat[7,1] = "Gross margin       "
+la_sesstat[8,1] = "% Gross margin     "
+
+*--Establish Class Library
+SET CLASSLIB TO wsglib ADDITIVE
+*-- Create a cursor for tax calculation
+IF TYPE("oApp") <> "O"
+  oApp = CREATEOBJECT("app")
+ENDIF
+SET DELETED ON
+IF l_setup()
+ 
+  ll_cont = .T.
+  SELECT a_curbil
+  GO TOP
+  IF EOF()
+    DO g_dspalt WITH "There are no current billing items.", 1
+    ll_cont = .F.
+  ENDIF
+  IF ll_cont AND  g_getdlg("Are you sure that you want to post the billing?",2,2,"No","Yes") = 2
+
+    *-- Get next session numbers only if all tests have been passed
+
+    *-- Create an array of session numbers - one for each A/R company
+    FOR ln_compid = 1 TO 99
+      SELECT a_sysdat
+      LOCATE FOR sysid = "AR" + RIGHT(STR(100 + ln_compid),2) AND ;
+      LEFT(pass2, 1) <> "D" AND NOT DELETED()
+      IF FOUND()
+        ll_sessok = g_getses(@lc_sessno, "NEW", gc_task, 0,;
+        RIGHT(STR(100 + ln_compid),2), "AR")
+        la_sessarray(ln_compid) = lc_sessno
+      ENDIF FOUND()
+
+    ENDFOR
+
+    *-- Create billing master and transaction records, update customer
+    SELECT a_curbil
+    GO TOP
+    lc_lastinvno = a_curbil->inv_number
+    SCAN WHILE NOT EOF()
+      DO g_dspst WITH "Converting invoice " + a_curbil->inv_number, .T., gn_msgline, "", "", ""
+      *-- Check for the presence of an invoice for this customer in the current month
+      IF NOT lf_convbill(a_curbil->inv_number, a_curbil->inv_date)
+        ll_cont = .F.
+      ENDIF
+      lc_lastinvno = a_curbil->inv_number
+    ENDSCAN
+    *-- Close session statistics
+    FOR ln_compid = 1 TO 99
+      IF NOT EMPTY(la_sessarray(ln_compid))
+        lc_sessno = la_sessarray(ln_compid)
+        ll_sessok = g_getses(@lc_sessno, "DONE", gc_task, 0,;
+        RIGHT(STR(100 + ln_compid),2), "AR")
+      ENDIF FOUND()
+    ENDFOR
+
+
+    IF ll_cont
+
+      *-- Update session information
+      = l_updsess(ln_tottax, ;
+      ln_totminv, ;
+      0, ;
+      0, ;
+      ln_totminv, ;
+      @ln_updsess)
+
+      DO g_dspst WITH "Updating billing history file", .T., gn_msgline, "", "", ""
+      *-- Update bills file from curbills
+      SELECT a_curbil
+      GO TOP
+      SCAN WHILE NOT EOF()
+        DO g_dspst WITH "Updating billing history file invoice number " + a_curbil->inv_number, .T., gn_msgline, "", "", ""
+        SELECT a_curbil
+        SCATTER MEMVAR MEMO
+        SELECT a_bills
+        APPEND BLANK
+        GATHER MEMVAR MEMO
+      ENDSCAN
+      SELECT a_bills
+      UNLOCK
+
+      *-- Create a search cursor from the current billing record
+      SELECT storecode, inv_date ;
+      DISTINCT FROM a_curbil ;
+      INTO CURSOR cursearch ;
+      ORDER BY storecode
+
+      *-- Archive change records
+      DO g_dspst WITH "Updating Change history file", .T., gn_msgline, "", "", ""
+
+      SELECT a_change
+      SET ORDER TO chg_sc
+      *-- Update change history record and delete from current
+      SELECT cursearch
+      GO TOP
+      SCAN WHILE NOT EOF()
+        DO g_dspst WITH "Updating change file store number " + cursearch->storecode, .T., gn_msgline, "", "", ""
+        SELECT a_change
+        SEEK LEFT(cursearch->storecode,11)
+        IF FOUND()
+          SCAN WHILE NOT EOF() AND LEFT(a_change->storecode,11) = ;
+            LEFT(cursearch->storecode,11) FOR NOT DELETED()
+            IF a_change->drop_date > cursearch->inv_date
+              LOOP
+            ENDIF
+            SELECT a_change
+            SCATTER MEMVAR MEMO
+            SELECT a_acychg
+            APPEND BLANK
+            GATHER MEMVAR MEMO
+            SELECT a_change
+            DELETE
+          ENDSCAN
+        ENDIF && FOUND()
+      ENDSCAN
+      DO g_dspst WITH "Packing Change File ", .T., gn_msgline, "", "", ""
+      SELECT a_change
+      PACK
+
+      *-- Archive Slips
+      DO g_dspst WITH "Updating Slips history file", .T., gn_msgline, "", "", ""
+
+      SELECT a_slips
+      SET ORDER TO str_code
+      *-- Update slips history record and delete from current
+      SELECT cursearch
+      GO TOP
+      SCAN WHILE NOT EOF()
+        DO g_dspst WITH "Updating slips file store number " + cursearch->storecode, .T., gn_msgline, "", "", ""
+        SELECT a_slips
+        SEEK LEFT(cursearch->storecode,11)
+        IF FOUND()
+          SCAN WHILE NOT EOF() AND LEFT(a_slips->storecode,11) = ;
+            LEFT(cursearch->storecode,11) FOR NOT DELETED()
+            *-- WLF 1/22/08 Delay slip deletion 180 days
+            IF a_slips->slip_date > cursearch->inv_date - 180
+              LOOP
+            ENDIF
+            SELECT a_slips
+            SCATTER MEMVAR MEMO
+            SELECT a_acyslp
+            APPEND BLANK
+            GATHER MEMVAR MEMO
+            SELECT a_slips
+            DELETE
+          ENDSCAN
+        ENDIF && FOUND()
+      ENDSCAN
+      DO g_dspst WITH "Packing Slips File ", .T., gn_msgline, "", "", ""
+      SELECT a_slips
+      PACK
+
+      *-- Archive Deposits
+      DO g_dspst WITH "Updating Deposits history file", .T., gn_msgline, "", "", ""
+
+      SELECT a_deposit
+      SET ORDER TO s_cde_d
+      *-- Update slips history record and delete from current
+      SELECT cursearch
+      GO TOP
+      SCAN WHILE NOT EOF()
+        DO g_dspst WITH "Updating deposit store number " + cursearch->storecode, .T., gn_msgline, "", "", ""
+        SELECT a_deposit
+        SEEK LEFT(cursearch->storecode,11)
+        IF FOUND()
+          SCAN WHILE NOT EOF() AND LEFT(a_deposit->storecode,11) =  ;
+            LEFT(cursearch->storecode,11) FOR NOT DELETED()
+            IF a_deposit->entry_date > cursearch->inv_date
+              LOOP
+            ENDIF
+            SELECT a_deposit
+            SCATTER MEMVAR MEMO
+            SELECT a_acydep
+            APPEND BLANK
+            GATHER MEMVAR MEMO
+            SELECT a_deposit
+            DELETE
+          ENDSCAN
+        ENDIF && FOUND()
+      ENDSCAN
+      DO g_dspst WITH "Packing Deposits File ", .T., gn_msgline, "", "", ""
+      SELECT a_deposit
+      PACK
+      *-- Zap curbills file
+      SELECT a_curbil
+      ZAP
+
+
+
+
+      DO g_dspalt WITH "Billing Update has been completed", 1
+    ENDIF && ll_cont
+  ELSE
+    DO g_dspalt WITH "Billing Update has been cancelled", 1
+  ENDIF
+
+  *-- Close  tables which has been opened for exclusive use
+  USE IN a_curbil
+  USE IN a_slips
+  USE IN a_change
+  USE IN a_deposit
+ENDIF
+
+gc_task = "Armed Courier Main Menu"
+DO g_dspst WITH gc_task, .F., gn_msgline, gc_applid, gc_compid, gc_userid
+
+RETURN
+
+****************
+FUNCTION l_setup
+****************
+PRIVATE ll_cont
+ll_cont = .T.
+IF g_getdlg("Are you sure that you are the only person using this system?",2,2,"No","Yes") <> 2
+  ll_cont = .F.
+ENDIF
+IF ll_cont
+  DO g_dspst WITH "Post Bills...", .T., gn_msgline, "", "", ""
+  IF NOT USED("a_arcust")
+    = d_setfl("ARCUST", gc_compid, 3)
+    = g_opnfl(gf_arcustf, "a_arcust", .F., .F.)
+  ENDIF
+  SELECT a_arcust
+  SET ORDER TO custno
+
+  IF NOT USED("a_stores")
+    = g_opnfl(gf_storesf, "a_stores", .F., .F.)
+  ENDIF
+  SELECT a_stores
+  SET ORDER TO storecde
+
+  IF NOT USED("a_bills")
+    = g_opnfl(gf_billsf, "a_bills", .F., .F.)
+  ENDIF
+  SELECT a_bills
+  SET ORDER TO inv_no
+  *-- Create a bill cursor
+  = AFIELDS(la_bills)
+  CREATE CURSOR curnewbills FROM ARRAY la_bills
+
+  IF NOT USED("a_acychg")
+    = d_setfl("ACYCHG", gc_compid, 3)
+    = g_opnfl(gf_acychgf, "a_acychg", .F., .F.)
+  ENDIF
+
+  IF NOT USED("a_acyslp")
+    = d_setfl("ACYSLP", gc_compid, 3)
+    = g_opnfl(gf_acyslpf, "a_acyslp", .F., .F.)
+  ENDIF
+
+  IF NOT USED("a_acydep")
+    = d_setfl("ACYDEP", gc_compid, 3)
+    = g_opnfl(gf_acydepf, "a_acydep", .F., .F.)
+  ENDIF
+
+  PRIVATE la_bills
+
+
+  IF NOT USED("a_armast")
+    = d_setfl("ARMAST", gc_compid, 3)
+    = g_opnfl(gf_armastf, "a_armast", .F., .F.)
+  ENDIF
+
+  IF NOT USED("a_arymst")
+    = d_setfl("ARYMST", gc_compid, 3)
+    = g_opnfl(gf_arymstf, "a_arymst", .F., .F.)
+  ENDIF
+
+  IF NOT USED("a_artran")
+    = d_setfl("ARTRAN", gc_compid, 3)
+    = g_opnfl(gf_artranf, "a_artran", .F., .F.)
+  ENDIF
+
+  *-- The following tables must be opened for exclusive use
+  IF USED("a_curbil")
+    USE IN a_curbil
+  ENDIF
+  = g_opnfl(gf_curbillsf, "a_curbil", .T., .F.)
+  SELECT a_curbil
+  SET ORDER TO invno1
+
+  IF USED("a_change")
+    USE IN a_change
+  ENDIF
+  IF NOT USED("a_change")
+    = d_setfl("CHANGE", gc_compid, 3)
+    = g_opnfl(gf_changef, "a_change", .T., .F.)
+  ENDIF
+
+  IF USED("a_slips")
+    USE IN a_slips
+  ENDIF
+  IF NOT USED("a_slips")
+    = d_setfl("SLIPS", gc_compid, 3)
+    = g_opnfl(gf_slipsf, "a_slips", .T., .F.)
+  ENDIF
+
+  IF USED("a_deposit")
+    USE IN a_deposit
+  ENDIF
+
+  IF NOT USED("a_deposit")
+    = d_setfl("DEPOSITS", gc_compid, 3)
+    = g_opnfl(gf_depositsf, "a_deposit", .T., .F.)
+  ENDIF
+
+ENDIF && ll_cont
+RETURN ll_cont
+
+*********************
+PROCEDURE lf_convbill
+*********************
+PARAMETER pc_invno, ;
+pd_inv_date
+
+PRIVATE lc_invno, ;
+ld_inv_date, ;
+ll_return
+PRIVATE ln_totinvtax, ln_pretax, ln_taxable
+*-- Create the SQL Connection
+ln_sysrec = g_setsys("AC", gc_compid, .f.)
+*-- Connect to SQL Server
+gc_sqlconnect = UPPER(ALLTRIM(a_sysdat->sqlconnect))
+gc_sqluser = ALLTRIM(a_sysdat->sqluser)
+gc_sqlpasswd = ALLTRIM(a_sysdat->sqlpasswd)
+gnConnHandle = SQLCONNECT(gc_sqlconnect, gc_sqluser, gc_sqlpasswd)
+= SQLSETPROP(gnConnHandle, 'Transactions', 2)  && Manual transactions
+= SQLSETPROP(gnConnHandle, 'asynchronous', .F.)
+
+
+
+ll_return = .T.
+lc_invno = pc_invno
+ld_inv_date = pd_inv_date
+SELECT a_stores
+SEEK LEFT(a_curbil->storecode,11)
+IF FOUND()
+  *-- If company billing, use company file, otherwise, store file
+  IF EMPTY(RIGHT(a_curbil->bill_store,6))
+
+
+    lc_compcode = LEFT(a_curbil->storecode,4)
+    lc_sqlstring = "SELECT * FROM company WHERE comp_code = ?lc_compcode"
+    = SQLPREPARE(gnConnHandle, lc_sqlstring , "curbillcompany")
+    ln_exec = SQLEXEC(gnConnHandle)
+    IF ln_exec < 1
+      WAIT WINDOW "SQL ERROR Has Occurred "
+      = AERROR(la_error)
+      WAIT WINDOW la_error(1,2)
+      ll_cont = .F.
+    ENDIF
+    IF NOT EOF("curbillcompany")
+      lc_custno = curbillcompany->custno
+    ELSE
+      DO g_dspalt WITH "Company " + LEFT(a_curbil->storecode,4) + " not found. Terminating update."  , 1
+      ll_return = .F.
+    ENDIF
+  ELSE
+    lc_custno = a_stores->custno
+  ENDIF
+ELSE
+  DO g_dspalt WITH "Store " + LEFT(a_curbil->storecode,4) + " not found. Terminating update."  , 1
+  ll_return = .F.
+ENDIF
+
+IF ll_return
+  SELECT a_arcust
+  SET ORDER TO custno
+  *--  Validate customer
+  SELECT a_arcust
+  SEEK lc_custno
+  IF NOT FOUND()
+    DO g_dspalt WITH "Customer " + lc_custno + " not found for invoice " ;
+    + pc_invno + ". Terminating update."  , 1
+    ll_return = .F.
+  ENDIF NOT FOUND()
+
+ENDIF ll_return
+
+IF ll_return
+  *-- Create an array of the company 01 customer for later use
+  SELECT a_arcust
+  SCATTER TO la_arcust
+  gc_compid = "01"
+  USE IN a_arcust
+  = d_setfl("ARCUST", gc_compid, 3)
+  = g_opnfl(gf_arcustf, "a_arcust", .F., .F.)
+  SELECT a_arcust
+  SET ORDER TO custno
+  USE IN a_armast
+  = d_setfl("ARMAST", gc_compid, 3)
+  = g_opnfl(gf_armastf, "a_armast", .F., .F.)
+  USE IN a_artran
+  = d_setfl("ARTRAN", gc_compid, 3)
+  = g_opnfl(gf_artranf, "a_artran", .F., .F.)
+  IF USED("a_ardist")
+    USE IN a_ardist
+  ENDIF
+  = d_setfl("ARDIST", gc_compid, 3)
+  = g_opnfl(gf_ardistf, "a_ardist", .F., .F.)
+ENDIF ll_return
+
+IF ll_return
+  *-- Check for the existence of the invoice in armast or arymst
+  SELECT a_armast
+  SET ORDER TO invno
+  SEEK lc_invno
+  IF FOUND()
+    DO g_dspalt WITH "Invoice " + pc_invno + " is already in the file. Terminating update."  , 1
+    ll_return = .F.
+  ENDIF
+  IF ll_return
+    SELECT a_arymst
+    SET ORDER TO invno
+    SEEK lc_invno
+    IF FOUND()
+      DO g_dspalt WITH "Invoice " + pc_invno + " is already in the file. Terminating update."  , 1
+      ll_return = .F.
+    ENDIF
+  ENDIF
+ENDIF && ll_return
+
+
+*-- Establish the proper session for this company
+IF ll_return
+  lc_sessno = la_sessarray(VAL(gc_compid))
+ENDIF
+
+IF ll_return
+  *-- Create a cursor for speed in SQL Commands
+  SELECT curnewbills
+  ZAP
+  SELECT a_curbil
+  SEEK lc_invno
+  SCAN WHILE NOT EOF() AND a_curbil->inv_number = lc_invno
+    SELECT a_curbil
+    SCATTER MEMVAR MEMO
+    SELECT curnewbills
+    APPEND BLANK
+    GATHER MEMVAR MEMO
+  ENDSCAN
+  SELECT a_curbil
+  SKIP - 1
+  SELECT curnewbills
+  GO TOP
+  IF NOT EOF()
+    PRIVATE ln_balchange, la_totaltax
+    ln_balchange = 0
+    ln_invamt = 0
+
+    *-- Develop the pretax amount to be charged
+    SELECT SUM(charged) FROM curnewbills INTO ARRAY la_pretax
+    IF _TALLY <> 0
+      ln_pretax = la_pretax(1)
+    ELSE
+      ln_pretax = 0
+    ENDIF
+
+
+    *-- Develop the taxable amount
+    SELECT SUM(charged) FROM curnewbills WHERE tax_rate <> 0 INTO ARRAY la_taxtable
+    IF _TALLY <> 0
+      ln_taxable = la_taxtable(1)
+    ELSE
+      ln_taxable = 0
+    ENDIF
+
+
+
+    *-- Develop the total tax to be charged
+    SELECT SUM(ROUND(charged * (tax_rate/100),2)) FROM curnewbills INTO ARRAY la_totaltax
+    IF _TALLY <> 0
+      ln_totinvtax = la_totaltax(1)
+    ELSE
+      ln_totinvtax = 0
+    ENDIF
+
+
+    *-- Develop Total Taxable amount
+    SELECT inv_number, tax_rate, tax_area, SUM(curnewbills->charged) AS taxable ;
+    FROM curnewbills INTO ;
+    CURSOR curtrantax  WHERE tax_rate <> 0
+
+    *-- Create Trans files for taxable items
+    SELECT SUM(charged), tax_rate FROM curnewbills INTO CURSOR curtax GROUP BY tax_rate WHERE tax_rate <> 0
+
+
+    *-- Create Single Trans record for non taxable items
+    SELECT inv_number, SUM(charged) AS nontaxable ;
+    FROM curnewbills  INTO CURSOR curnontax ;
+    GROUP BY inv_number WHERE tax_rate = 0
+
+
+    *-- Invoice Master file
+    SELECT a_armast
+    APPEND BLANK
+    REPLACE a_armast->custno   WITH lc_custno
+    REPLACE a_armast->invno    WITH lc_invno
+    REPLACE a_armast->invdte   WITH ld_inv_date
+    REPLACE a_armast->currid   WITH 'USD'
+    REPLACE a_armast->exchrat  WITH 1
+    REPLACE a_armast->adduser  WITH gc_userid
+    REPLACE a_armast->adddate  WITH DATE()
+    REPLACE a_armast->addtime  WITH TIME()
+    REPLACE a_armast->lckuser  WITH 'CONV'
+    REPLACE a_armast->lckdate  WITH DATE()
+    REPLACE a_armast->lcktime  WITH TIME()
+    REPLACE a_armast->invamt   WITH ln_pretax + ln_totinvtax
+    REPLACE a_armast->binvamt  WITH ln_pretax + ln_totinvtax
+    REPLACE a_armast->balance  WITH ln_pretax + ln_totinvtax
+    REPLACE a_armast->bbal     WITH ln_pretax + ln_totinvtax
+
+    ln_invamt = ln_invamt + ln_pretax + ln_totinvtax
+
+    *-- Create taxable amounts in ARMAST
+    IF ln_totinvtax <> 0
+      SELECT a_armast
+      REPLACE a_armast->taxsamt  WITH ln_taxable
+      REPLACE a_armast->btaxsam  WITH ln_taxable
+      REPLACE a_armast->tax      WITH ln_totinvtax
+      REPLACE a_armast->taxrate  WITH IIF(ln_taxable <> 0,((ln_totinvtax/ln_taxable) * 100),0)
+      REPLACE a_armast->btax     WITH ln_totinvtax
+      REPLACE a_armast->terr     WITH "01"
+    ENDIF
+
+
+    *-- Transaction file
+    ln_lineno = 1
+    *-- Taxable records
+    SELECT curtax
+    GO TOP
+    IF NOT EOF()
+      SCAN WHILE NOT EOF()
+        *-- Create artran record
+        = lf_maketran()
+        REPLACE a_artran->price     WITH curtax->sum_charged
+        REPLACE a_artran->bprice    WITH curtax->sum_charged
+        REPLACE a_artran->extprice  WITH curtax->sum_charged
+        REPLACE a_artran->bextpri   WITH curtax->sum_charged
+        REPLACE a_artran->taxrate   WITH curtax->tax_rate
+        REPLACE a_artran->taxable   WITH "Y"
+        REPLACE a_artran->terr      WITH "01"
+      ENDSCAN
+    ENDIF
+    SELECT curnontax
+    IF NOT EOF()
+      *-- Create artran record
+      = lf_maketran()
+      REPLACE a_artran->price     WITH curnontax->nontaxable
+      REPLACE a_artran->bprice    WITH curnontax->nontaxable
+      REPLACE a_artran->extprice  WITH curnontax->nontaxable
+      REPLACE a_artran->bextpri   WITH curnontax->nontaxable
+      REPLACE a_artran->taxable   WITH "N"
+    ENDIF
+
+    *-- Update ardist
+    lc_updinvno = lc_invno
+    *ld_invdte = ld_inv_date
+    ld_invdte = a_armast->invdte
+    ln_tottax = ln_tottax + a_armast->tax
+    ln_totminv = ln_totminv + a_armast->invamt
+    ln_noinv = ln_noinv + 1
+    ln_invtax = a_armast->tax
+    *-- Update Distribution file if linked to GL
+    = l_upddst(@ln_upddst, lc_tranno, lc_cshact)
+
+    *-- Update customer balances
+    SELECT a_arcust
+    SEEK lc_custno
+    *-- If the customer rescord found
+    IF FOUND()
+      IF RLOCK() OR g_lckrc(ALIAS(), gn_retry, Cl_Again, "arcust")
+        REPLACE a_arcust->balance WITH a_arcust->balance + ;
+        ln_balchange
+        REPLACE a_arcust->ptdsls  WITH a_arcust->ptdsls  + ;
+        ln_balchange
+        REPLACE a_arcust->ytdsls  WITH a_arcust->ytdsls + ;
+        ln_balchange
+        REPLACE a_arcust->ldate WITH ld_inv_date, ;
+        a_arcust->lsale WITH ;
+        ln_balchange
+        REPLACE a_arcust->lckuser  WITH gc_userid ,;
+        a_arcust->lckdate  WITH DATE(), ;
+        a_arcust->lcktime  WITH TIME()
+      ENDIF && RLOCK
+      *-- Release physical lock on customer record
+      UNLOCK IN a_arcust
+    ENDIF && FOUND()
+
+    *-- Update system wide balances and update COGS totals for both stock and
+    *-- non-stock items.
+    ln_updsys = 1
+    SELECT a_sysdat
+
+    *-- Find sysdata record and lock it for update
+    = g_setsys("AR", gc_compid, .T.)
+    = RLOCK("a_sysdat") OR g_lckrc("a_sysdat", -1, .F., "sysdata")
+    REPLACE num1 WITH num1 + ln_balchange, ;
+    num2 WITH num2 + ln_invamt, ;
+    num7 WITH num7 + ln_invtax
+    UNLOCK IN a_sysdat
+
+
+    *-- Ensure sysdata is on AC
+    = g_setsys("AC", gc_compid, .F.)
+
+  ENDIF && NOT EOF()
+ENDIF && ll_return
+IF gc_compid  <> "01"
+  *-- Restore company identifier
+  gc_compid = "01"
+  USE IN a_arcust
+  = d_setfl("ARCUST", gc_compid, 3)
+  = g_opnfl(gf_arcustf, "a_arcust", .F., .F., "custno")
+  USE IN a_armast
+  = d_setfl("ARMAST", gc_compid, 3)
+  = g_opnfl(gf_armastf, "a_armast", .F., .F.)
+  USE IN a_artran
+  = d_setfl("ARTRAN", gc_compid, 3)
+  = g_opnfl(gf_artranf, "a_artran", .F., .F.)
+  USE IN a_ardist
+  = d_setfl("ARDIST", gc_compid, 3)
+  = g_opnfl(gf_ardistf, "a_ardist", .F., .F.)
+ENDIF
+RETURN ll_return
+
+*********************
+PROCEDURE lf_maketran
+*********************
+SELECT a_artran
+APPEND BLANK
+REPLACE a_artran->custno  WITH lc_custno
+REPLACE a_artran->invno   WITH lc_invno
+REPLACE a_artran->invdte  WITH ld_inv_date
+REPLACE a_artran->LINENO  WITH ln_lineno
+REPLACE a_artran->ITEM    WITH "_MANUAL_INVOICE"
+REPLACE a_artran->DESCRIP WITH "Manual Invoice"
+REPLACE a_artran->currid  WITH "USD"
+REPLACE a_artran->exchrat WITH 1
+REPLACE a_artran->glasst  WITH "DEF"
+REPLACE a_artran->glsale  WITH "DEF"
+REPLACE a_artran->qtyord  WITH 1
+REPLACE a_artran->qtyshp  WITH 1
+REPLACE a_artran->adduser WITH gc_userid
+REPLACE a_artran->adddate WITH DATE()
+REPLACE a_artran->addtime WITH TIME()
+REPLACE a_artran->lckuser WITH gc_userid
+REPLACE a_artran->lckdate WITH DATE()
+REPLACE a_artran->lcktime WITH TIME()
+ln_lineno = ln_lineno + 1
+RETURN
+
+*********************************************************************************
+*-- l_upddst from ar\arpost:
+*------------------------------------------------------------------------------
+*- Function...: l_upddst()
+*------------------------------------------------------------------------------
+*- Synopsis...: Updates the distribution files. Creates array with accounts and
+*-              amounts to post to distribution files. Calls global procedure
+*-              to perform distribution file updates.
+*------------------------------------------------------------------------------
+*- Passed:
+*- Variables..: gl_lntax,  .t. if using line item tax (VAT)
+*-              gl_gllink, .t. if linked to GL
+*-              gc_cshact, default cash account
+*-              gc_aracct, default AR account
+*-              lc_sessno, session number
+*-              lc_sessic, IC session number
+*------------------------------------------------------------------------------
+*- Returns:
+*- Value......: .t. if updates were successful
+*------------------------------------------------------------------------------
+FUNCTION l_upddst
+
+PARAMETERS rn_upddst, ;
+pc_ctranno, ;
+pc_cshact, ;
+pc_paycur, ;
+pn_payrate, ;
+pn_balcor
+
+PRIVATE la_arpost, ;
+la_icpost, ;
+lc_aracct, ;
+lc_itmacct, ;
+ll_noacct, ;
+ll_result, ;
+ln_arpost, ;
+ln_opndist, ;
+ln_opnglac, ;
+ln_opnidst, ;
+ln_post, ;
+ln_alen
+
+*-- Initialize locals
+lc_aracct  = Cc_NullStr
+lc_itmacct = Cc_NullStr
+ll_noacct  = .T.
+ll_result  = .T.
+ln_arpost  = 0
+ln_opndist = 0
+ln_opnglac = 0
+ln_opnidst = 0
+ln_post    = 0
+
+*-- WSG NOTE: Get accounts (Debit AR, Credit Sales, Credit Sales Tax) Hard code for now
+PRIVATE lc_dbar, ;
+lc_crsls, ;
+lc_crtax
+lc_dbar = "11000"
+lc_crsls = "40000"
+lc_crtax = "23000"
+
+*-- Display processing message
+*DO g_dspst WITH "Updating Distribution Files...", .t., gn_msgline, "", "", ""
+
+*-- Open AR Journal file
+= d_setfl("ARDIST", gc_compid, 3)
+ln_opndist = g_opnfl(gf_ardistf, "a_ardist")
+ll_result = ll_result AND (ln_opndist <> Cn_NotOpen)
+
+*-- Open Transaction Category Code file
+= d_setfl("ARGLAC", gc_compid, 3)
+ln_opnglac = g_opnfl(gf_arglacf, "a_arglac", .F., .F., "scode1")
+ll_result = ll_result AND (ln_opnglac <> Cn_NotOpen)
+
+*-- Select Temporary file
+*SELECT a_tmpf1
+*GOTO TOP IN a_tmpf1
+SELECT a_artran
+SET ORDER TO invno
+SET KEY TO lc_updinvno
+GO TOP
+
+*-- Declare array for building posting amounts for ARDIST
+*DECLARE la_arpost[IIF(gl_lntax, 28, 3) + (2 * RECCOUNT("a_tmpf1")), 5]
+*DECLARE la_arpost[IIF(gl_lntax, 28, 3) + (2 * RECCOUNT("a_artran")), 5]
+*-- DAV mod - make array size smaller - artran count becoming too large
+DECLARE la_arpost[IIF(gl_lntax, 28, 3) + (200), 5]
+
+*-- Treat account # will all zeros the same as blanks
+*-- Check for existense of customer account number
+*-- WSG NOTE: use ar account
+*lc_aracct = a_arcust->aracct
+lc_aracct = lc_dbar
+ll_noacct = (VAL(STRTRAN(lc_aracct, "-", "0")) = 0)
+ln_arpost = 1
+
+*-- Update for Account Receivable Asset
+*-- fill in current row of array with AR account, receivable amt, type
+la_arpost[ln_arpost, 1] = IIF(ll_noacct, gc_aract, lc_aracct)
+*la_arpost[ln_arpost, 2] = la_armast[1, bi_invamt]
+la_arpost[ln_arpost, 2] = ln_invamt
+*la_arpost[ln_arpost, 5] = l_cnvcurr(la_armast[1, bi_invamt], Cl_MasterCurr)
+la_arpost[ln_arpost, 5] = ln_invamt
+
+*-- debiting AR control account
+la_arpost[ln_arpost, 3] = "DC"
+la_arpost[ln_arpost, 4] = 0
+
+*-- increment array line counter
+ln_arpost = ln_arpost + 1
+
+*-- WSG NOTE:  Credit Sales Tax
+la_arpost[ln_arpost, 1] = lc_crtax
+la_arpost[ln_arpost, 2] = 0 - (ln_invtax)
+*la_arpost[ln_arpost, 5] = 0 - l_cnvcurr(ln_post, a_tmpf1->exchrat)
+la_arpost[ln_arpost, 5] = 0 - (ln_invtax)
+
+*-- crediting revenue distribution account
+la_arpost[ln_arpost, 3] = "CC"
+*la_arpost[ln_arpost, 4] = a_tmpf1->lineno
+la_arpost[ln_arpost, 4] = 0
+
+*-- increment array line counter
+ln_arpost = ln_arpost + 1
+
+*-- Accumulate tax amounts through procedure
+*ln_arpost = g_psttax(ln_arpost, @la_arpost, la_armast[1, bi_exchrat])
+ln_arpost = g_psttax(ln_arpost, @la_arpost, 1)
+
+*-- Accumulate Invoice detail line update to ARDIST
+*SELECT a_tmpf1
+SELECT a_artran
+SET ORDER TO invno
+SET KEY TO lc_updinvno
+GO TOP
+
+SCAN WHILE ll_result
+  SELECT a_arglac
+
+  *-- find tran category record for code combination in detail record
+  *IF SEEK(a_tmpf1->glsale + a_tmpf1->glasst)
+  IF SEEK(a_artran->glsale + a_artran->glasst)
+    *-- read accounts to post revenues, cost of goods, line discounts
+    *-- from link record
+
+    *-- Update activity flag if not previously used
+    IF a_arglac->activity <> "Y"
+      = RLOCK("a_arglac") OR g_lckrc("a_arglac", -1, .F., Cc_NullStr)
+      REPLACE activity WITH "Y"
+    ENDIF
+
+  ELSE
+    *-- post to blank accounts from EOF() record
+    GOTO BOTTOM IN a_arglac
+
+    IF NOT EOF("a_arglac")
+      SKIP IN a_arglac
+    ENDIF
+
+  ENDIF
+
+  *-- Calculate price without discount
+  *ln_post = g_extnd(2, a_tmpf1->qtyshp, a_tmpf1->price, 0)
+  ln_post = g_extnd(2, a_artran->qtyshp, a_artran->price, 0)
+
+  *-- must record the sale account if there is any prices
+  IF ln_post <> 0
+    *-- Update revenue account for full Sales Price
+    *-- fill in current row of array with revenue account,
+    *-- this line's revenue amt, type
+    la_arpost[ln_arpost, 1] = a_arglac->incom
+    la_arpost[ln_arpost, 2] = 0 - ln_post
+    *la_arpost[ln_arpost, 5] = 0 - l_cnvcurr(ln_post, a_tmpf1->exchrat)
+    la_arpost[ln_arpost, 5] = 0 - ln_post
+
+    *-- crediting revenue distribution account
+    la_arpost[ln_arpost, 3] = "CD"
+    *la_arpost[ln_arpost, 4] = a_tmpf1->lineno
+    la_arpost[ln_arpost, 4] = a_artran->LINENO
+
+    *-- increment array line counter
+    ln_arpost = ln_arpost + 1
+
+  ENDIF
+
+  *-- must record the sales discount amount if there is any discounts
+  *IF (ln_post - a_tmpf1->extprice) <> 0
+  IF (ln_post - a_artran->extprice) <> 0
+    *-- Update for Sales Discount
+    *-- fill in current row of array with discount account,
+    *-- this line's discount amt, type: POSTS THROUGH AR
+    la_arpost[ln_arpost, 1] = a_arglac->lndisc
+    *la_arpost[ln_arpost, 2] = ln_post - a_tmpf1->extprice
+    la_arpost[ln_arpost, 2] = ln_post - a_artran->extprice
+    *la_arpost[ln_arpost, 5] = l_cnvcurr(ln_post - a_tmpf1->extprice, ;
+    *                     a_tmpf1->exchrat)
+    la_arpost[ln_arpost, 5] = ln_post - a_artran->extprice
+
+    *-- debiting discount distribution account
+    la_arpost[ln_arpost, 3] = "DD"
+    *la_arpost[ln_arpost, 4] = a_tmpf1->lineno
+    la_arpost[ln_arpost, 4] = a_artran->LINENO
+
+    *-- increment array line counter
+    ln_arpost = ln_arpost + 1
+  ENDIF
+
+
+ENDSCAN
+
+IF ll_result
+
+  DO g_upddst WITH "a_ardist", ;
+  (lc_updinvno), ;
+  la_arpost, ;
+  ld_invdte, ;
+  lc_sessno, ;
+  "USD"
+
+  *-- Release posting array
+  RELEASE la_arpost
+
+ENDIF && ll_result
+
+*!*      *-- Display processing message
+*!*      = l_dspst()
+
+*-- Update the process completion indicator
+rn_upddst = IIF(ll_result, 1, -1)
+
+*!*      = l_dspst(gc_task)
+
+SELECT a_artran
+IF NOT EMPTY(SET("key", 1))
+  *-- Remove previous key
+  SET KEY TO
+ENDIF
+
+RETURN (ll_result)
+*------------------------------------------------------------------------------
+*- End Function...: l_upddst()
+*------------------------------------------------------------------------------
+
+*------------------------------------------------------------------------------
+*- Function...: l_updsess()
+*------------------------------------------------------------------------------
+*- Synopsis...: Updates session staistics and batch totals when invoice saved
+*------------------------------------------------------------------------------
+*- Called by..: l_savinv()
+*------------------------------------------------------------------------------
+*- Returns:
+*- Value......: .t.
+*------------------------------------------------------------------------------
+FUNCTION l_updsess
+
+PARAMETERS pn_tax, ;
+pn_tminvt, ;
+pn_tinvt, ;
+pn_paidamt, ;
+pn_balance, ;
+rn_updsess
+
+LOCAL lc_ccypct
+*\ ARPOST18 01 10/20/00 TISR Format modified
+lc_ccypct = g_ccypct("@B 9,999,999,999,999,999.99", gc_basecur)
+
+*-- Update batch totals (vars defined in artran)
+*!*      tottax   = tottax   + pn_tax
+*!*      totminv  = totminv  + pn_tminvt
+*!*      totinv   = totinv   + pn_tinvt
+*!*      totcash  = totcash  + pn_paidamt
+*!*      totarecv = totarecv + pn_balance
+
+tottax   = pn_tax
+totminv  = pn_tminvt
+totinv   = pn_tinvt
+totcash  = pn_paidamt
+totarecv = pn_balance
+
+*!*      IF gl_gllink
+*-- Value of sales
+la_sesstat[2,2] = TRANSFORM(g_strccy(STRTRAN(la_sesstat[2,2], ",", ;
+Cc_NullStr)) + (pn_paidamt + pn_balance - ;
+pn_tax), lc_ccypct)
+
+*-- Sales tax
+la_sesstat[3,2] = TRANSFORM(g_strccy(STRTRAN(la_sesstat[3,2], ",", ;
+Cc_NullStr)) + pn_tax, lc_ccypct)
+
+*-- Cost of goods
+la_sesstat[4,2] = TRANSFORM(g_strccy(STRTRAN(la_sesstat[4,2], ",", ;
+Cc_NullStr)) + (pn_tinvt + pn_tminvt), ;
+lc_ccypct)
+
+*-- If saving an invoice
+IF ll_invoice
+  *-- Cash received
+  la_sesstat[5,2] = TRANSFORM(g_strccy(STRTRAN(la_sesstat[5,2], ",", ;
+  Cc_NullStr)) + pn_paidamt, lc_ccypct)
+
+  *-- Amount posted to AR
+  la_sesstat[6,2] = TRANSFORM(g_strccy(STRTRAN(la_sesstat[6,2], ",", ;
+  Cc_NullStr)) + pn_balance, ;
+  lc_ccypct)
+
+  *-- Gross margin
+  la_sesstat[7,2] = TRANSFORM(g_strccy(STRTRAN(la_sesstat[2,2], ",", ;
+  Cc_NullStr)) - VAL(STRTRAN(la_sesstat[4,2], ",", ;
+  Cc_NullStr)), lc_ccypct)
+
+  *-- % Gross margin
+  IF g_strccy(STRTRAN(la_sesstat[2,2], ",", Cc_NullStr)) = 0
+    la_sesstat[8,2] = TRANSFORM(0, lc_ccypct)
+  ELSE
+    la_sesstat[8,2] = ;
+    TRANSFORM((g_strccy(STRTRAN(la_sesstat[2,2], ",", ;
+    Cc_NullStr)) -g_strccy(STRTRAN(la_sesstat[4,2], ",", ;
+    Cc_NullStr)))/g_strccy(STRTRAN(la_sesstat[2,2], ",", ;
+    Cc_NullStr)), lc_ccypct)
+  ENDIF
+
+ENDIF &&ll_invoice
+
+*-- If not saving an invoice
+IF NOT ll_invoice
+  *-- Amount posted to AR
+  la_sesstat[5,2] = TRANSFORM(g_strccy(STRTRAN(la_sesstat[5,2], ",", ;
+  Cc_NullStr)) + pn_balance, lc_ccypct)
+
+ENDIF
+
+*!*      ENDIF && gl_gllink
+
+la_sesstat[1, 2] = ln_noinv
+
+*-- If completion variable passed, update its status
+IF TYPE('rn_updsess') = "N"
+  rn_updsess = 1
+ENDIF
+
+RETURN .T.
+*------------------------------------------------------------------------------
+*- End Function...: l_updsess()
+*------------------------------------------------------------------------------
+
+*********************
+FUNCTION HOLDl_upddst
+*********************
+
+PARAMETERS rn_upddst, ;
+pc_ctranno, ;
+pc_cshact, ;
+pc_paycur, ;
+pn_payrate, ;
+pn_balcor
+
+PRIVATE la_arpost, ;
+la_icpost, ;
+lc_aracct, ;
+lc_itmacct, ;
+ll_noacct, ;
+ll_result, ;
+ln_arpost, ;
+ln_opndist, ;
+ln_opnglac, ;
+ln_opnidst, ;
+ln_post, ;
+ln_alen
+
+*-- Initialize locals
+lc_aracct  = Cc_NullStr
+lc_itmacct = Cc_NullStr
+ll_noacct  = .T.
+ll_result  = .T.
+ln_arpost  = 0
+ln_opndist = 0
+ln_opnglac = 0
+ln_opnidst = 0
+ln_post    = 0
+
+*-- WSG NOTE: Get accounts (Debit AR, Credit Sales, Credit Sales Tax) Hard code for now
+PRIVATE lc_dbar, ;
+lc_crsls, ;
+lc_crtax
+lc_dbar = "11000"
+lc_crsls = "40000"
+lc_crtax = "23000"
+
+*-- Display processing message
+DO g_dspst WITH "Updating Distribution Files...", .T., gn_msgline, "", "", ""
+
+*-- Open AR Journal file
+= d_setfl("ARDIST", gc_compid, 3)
+ln_opndist = g_opnfl(gf_ardistf, "a_ardist")
+ll_result = ll_result AND (ln_opndist <> Cn_NotOpen)
+
+*-- Open Transaction Category Code file
+= d_setfl("ARGLAC", gc_compid, 3)
+ln_opnglac = g_opnfl(gf_arglacf, "a_arglac", .F., .F., "scode1")
+ll_result = ll_result AND (ln_opnglac <> Cn_NotOpen)
+
+*-- Select Temporary file
+*SELECT a_tmpf1
+*GOTO TOP IN a_tmpf1
+SELECT a_artran
+SET ORDER TO invno
+SET KEY TO lc_updinvno
+GO TOP
+
+*-- Declare array for building posting amounts for ARDIST
+*DECLARE la_arpost[IIF(gl_lntax, 28, 3) + (2 * RECCOUNT("a_tmpf1")), 5]
+DECLARE la_arpost[IIF(gl_lntax, 28, 3) + (2 * RECCOUNT("a_artran")), 5]
+
+*-- Treat account # will all zeros the same as blanks
+*-- Check for existense of customer account number
+*-- WSG NOTE: use ar account
+*lc_aracct = a_arcust->aracct
+lc_aracct = lc_dbar
+ll_noacct = (VAL(STRTRAN(lc_aracct, "-", "0")) = 0)
+ln_arpost = 1
+
+*-- Update for Account Receivable Asset
+*-- fill in current row of array with AR account, receivable amt, type
+la_arpost[ln_arpost, 1] = IIF(ll_noacct, gc_aract, lc_aracct)
+*la_arpost[ln_arpost, 2] = la_armast[1, bi_invamt]
+la_arpost[ln_arpost, 2] = ln_invamt
+*la_arpost[ln_arpost, 5] = l_cnvcurr(la_armast[1, bi_invamt], Cl_MasterCurr)
+la_arpost[ln_arpost, 5] = ln_invamt
+
+*-- debiting AR control account
+la_arpost[ln_arpost, 3] = "DC"
+la_arpost[ln_arpost, 4] = 0
+
+*-- increment array line counter
+ln_arpost = ln_arpost + 1
+
+*-- Accumulate tax amounts through procedure
+*ln_arpost = g_psttax(ln_arpost, @la_arpost, la_armast[1, bi_exchrat])
+ln_arpost = g_psttax(ln_arpost, @la_arpost, 1)
+
+*-- Accumulate Invoice detail line update to ARDIST
+*SELECT a_tmpf1
+SELECT a_artran
+SET ORDER TO invno
+SET KEY TO lc_updinvno
+GO TOP
+
+SCAN WHILE ll_result
+  SELECT a_arglac
+
+  *-- find tran category record for code combination in detail record
+  *IF SEEK(a_tmpf1->glsale + a_tmpf1->glasst)
+  IF SEEK(a_artran->glsale + a_artran->glasst)
+    *-- read accounts to post revenues, cost of goods, line discounts
+    *-- from link record
+
+    *-- Update activity flag if not previously used
+    IF a_arglac->activity <> "Y"
+      = RLOCK("a_arglac") OR g_lckrc("a_arglac", -1, .F., Cc_NullStr)
+      REPLACE activity WITH "Y"
+    ENDIF
+
+  ELSE
+    *-- post to blank accounts from EOF() record
+    GOTO BOTTOM IN a_arglac
+
+    IF NOT EOF("a_arglac")
+      SKIP IN a_arglac
+    ENDIF
+
+  ENDIF
+
+  *-- Calculate price without discount
+  *ln_post = g_extnd(2, a_tmpf1->qtyshp, a_tmpf1->price, 0)
+  ln_post = g_extnd(2, a_artran->qtyshp, a_artran->price, 0)
+
+  *-- must record the sale account if there is any prices
+  IF ln_post <> 0
+    *-- Update revenue account for full Sales Price
+    *-- fill in current row of array with revenue account,
+    *-- this line's revenue amt, type
+    la_arpost[ln_arpost, 1] = a_arglac->incom
+    la_arpost[ln_arpost, 2] = 0 - ln_post
+    *la_arpost[ln_arpost, 5] = 0 - l_cnvcurr(ln_post, a_tmpf1->exchrat)
+    la_arpost[ln_arpost, 5] = 0 - ln_post
+
+    *-- crediting revenue distribution account
+    la_arpost[ln_arpost, 3] = "CD"
+    *la_arpost[ln_arpost, 4] = a_tmpf1->lineno
+    la_arpost[ln_arpost, 4] = a_artran->LINENO
+
+    *-- increment array line counter
+    ln_arpost = ln_arpost + 1
+  ENDIF
+
+  *-- must record the sales discount amount if there is any discounts
+  *IF (ln_post - a_tmpf1->extprice) <> 0
+  IF (ln_post - a_artran->extprice) <> 0
+    *-- Update for Sales Discount
+    *-- fill in current row of array with discount account,
+    *-- this line's discount amt, type: POSTS THROUGH AR
+    la_arpost[ln_arpost, 1] = a_arglac->lndisc
+    *la_arpost[ln_arpost, 2] = ln_post - a_tmpf1->extprice
+    la_arpost[ln_arpost, 2] = ln_post - a_artran->extprice
+    *la_arpost[ln_arpost, 5] = l_cnvcurr(ln_post - a_tmpf1->extprice, ;
+    *                     a_tmpf1->exchrat)
+    la_arpost[ln_arpost, 5] = ln_post - a_artran->extprice
+
+    *-- debiting discount distribution account
+    la_arpost[ln_arpost, 3] = "DD"
+    *la_arpost[ln_arpost, 4] = a_tmpf1->lineno
+    la_arpost[ln_arpost, 4] = a_artran->LINENO
+
+    *-- increment array line counter
+    ln_arpost = ln_arpost + 1
+  ENDIF
+
+ENDSCAN
+
+IF ll_result
+
+  DO g_upddst WITH "a_ardist", ;
+  (lc_updinvno), ;
+  la_arpost, ;
+  g_retdt(ld_invdte), ;
+  lc_sessno, ;
+  "USD"
+
+  *-- Release posting array
+  RELEASE la_arpost
+
+
+ENDIF && ll_result
+
+*!*      *-- Display processing message
+*!*      = l_dspst()
+
+*-- Update the process completion indicator
+rn_upddst = IIF(ll_result, 1, -1)
+
+*!*      = l_dspst(gc_task)
+
+SELECT a_artran
+IF NOT EMPTY(SET("key", 1))
+  *-- Remove previous key
+  SET KEY TO
+ENDIF
+
+RETURN (ll_result)
+*------------------------------------------------------------------------------
+*- End Function...: l_upddst()
+*------------------------------------------------------------------------------
