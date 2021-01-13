@@ -1,0 +1,62 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="AMSECDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="SafeAndSound">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="SerialNumber" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+        <xs:element name="CourierAccountNumber" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+        <xs:element name="StartDateTime" type="xs:string" minOccurs="0" msdata:Ordinal="2" />
+        <xs:element name="EODDateTime" type="xs:string" minOccurs="0" msdata:Ordinal="3" />
+        <xs:element name="ReconcilationNumber" type="xs:string" minOccurs="0" msdata:Ordinal="4" />
+        <xs:element name="CurrentEod" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BillReaderTotal" type="xs:string" minOccurs="0" />
+              <xs:element name="Deposit" type="xs:string" minOccurs="0" />
+              <xs:element name="ChangeOrder" type="xs:string" minOccurs="0" />
+              <xs:element name="CassetteCount" type="xs:string" minOccurs="0" />
+              <xs:element name="Cassette" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Ones" type="xs:string" minOccurs="0" msdata:Ordinal="0" />
+                    <xs:element name="Twos" type="xs:string" minOccurs="0" msdata:Ordinal="1" />
+                    <xs:element name="Fives" type="xs:string" minOccurs="0" msdata:Ordinal="2" />
+                    <xs:element name="Tens" type="xs:string" minOccurs="0" msdata:Ordinal="3" />
+                    <xs:element name="Twenties" type="xs:string" minOccurs="0" msdata:Ordinal="4" />
+                    <xs:element name="Fifties" type="xs:string" minOccurs="0" msdata:Ordinal="5" />
+                    <xs:element name="Hundreds" type="xs:string" minOccurs="0" msdata:Ordinal="6" />
+                  </xs:sequence>
+                  <xs:attribute name="Number" type="xs:string" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="ManualDrops" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Cash" type="xs:string" minOccurs="0" />
+                    <xs:element name="Coins" type="xs:string" minOccurs="0" />
+                    <xs:element name="Checks" type="xs:string" minOccurs="0" />
+                    <xs:element name="Others" type="xs:string" minOccurs="0" />
+                    <xs:element name="ManualDrop" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="Count" type="xs:string" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="fileversion" type="xs:string" />
+      <xs:attribute name="filetype" type="xs:string" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AMSECDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="SafeAndSound" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

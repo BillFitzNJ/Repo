@@ -1,0 +1,71 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="billingdata" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="billingdata" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="store">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="storecode" type="xs:string" minOccurs="0" />
+              <xs:element name="active" type="xs:boolean" minOccurs="0" />
+              <xs:element name="store_name" type="xs:string" minOccurs="0" />
+              <xs:element name="f_address" type="xs:string" minOccurs="0" />
+              <xs:element name="f_city" type="xs:string" minOccurs="0" />
+              <xs:element name="f_state" type="xs:string" minOccurs="0" />
+              <xs:element name="f_zip" type="xs:string" minOccurs="0" />
+              <xs:element name="billcycle" type="xs:decimal" minOccurs="0" />
+              <xs:element name="billtype" type="xs:decimal" minOccurs="0" />
+              <xs:element name="attention" type="xs:string" minOccurs="0" />
+              <xs:element name="pu_address" type="xs:string" minOccurs="0" />
+              <xs:element name="d_code" type="xs:string" minOccurs="0" />
+              <xs:element name="d_name" type="xs:string" minOccurs="0" />
+              <xs:element name="d_address" type="xs:string" minOccurs="0" />
+              <xs:element name="rte_base" type="xs:decimal" minOccurs="0" />
+              <xs:element name="phone" type="xs:string" minOccurs="0" />
+              <xs:element name="tax_area" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strap_5" type="xs:decimal" minOccurs="0" />
+              <xs:element name="roll_25" type="xs:decimal" minOccurs="0" />
+              <xs:element name="cg_drp_rt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="chg_bill" type="xs:decimal" minOccurs="0" />
+              <xs:element name="envelope" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sep_dep" type="xs:decimal" minOccurs="0" />
+              <xs:element name="no_bill" type="xs:boolean" minOccurs="0" />
+              <xs:element name="no_slip" type="xs:boolean" minOccurs="0" />
+              <xs:element name="zero_rate" type="xs:boolean" minOccurs="0" />
+              <xs:element name="custno" type="xs:string" minOccurs="0" />
+              <xs:element name="spread_sht" type="xs:boolean" minOccurs="0" />
+              <xs:element name="provider" type="xs:string" minOccurs="0" />
+              <xs:element name="bill_memo" type="xs:string" minOccurs="0" />
+              <xs:element name="bankrupt" type="xs:boolean" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="addtime" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lcktime" type="xs:string" minOccurs="0" />
+              <xs:element name="atmrate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="packrate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="flatdrop" type="xs:decimal" minOccurs="0" />
+              <xs:element name="bill_ch_to" type="xs:boolean" minOccurs="0" />
+              <xs:element name="chg_b_cyc" type="xs:boolean" minOccurs="0" />
+              <xs:element name="stop_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="start_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="custcode" type="xs:string" minOccurs="0" />
+              <xs:element name="deporate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="paydlrate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="commamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="salesmn" type="xs:string" minOccurs="0" />
+              <xs:element name="commamt2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="salesmn2" type="xs:string" minOccurs="0" />
+              <xs:element name="atmid" type="xs:string" minOccurs="0" />
+              <xs:element name="sigcoin" type="xs:string" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="externalcoin" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

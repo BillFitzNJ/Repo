@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{91E0A1D2-7464-4D51-947B-C76B097EBAED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CommonAppClasses</RootNamespace>
+    <AssemblyName>CommonAppClasses</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WSGUtilitieslib">
+      <HintPath>..\WSGUtilitieslib\bin\Debug\WSGUtilitieslib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AMSECDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AMSECDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="atm.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>atm.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="billingdata.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>billingdata.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="CommonBusinessClasses.cs" />
+    <Compile Include="FrmGetDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGetDate.designer.cs">
+      <DependentUpon>FrmGetDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGetDateAndTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGetDateAndTime.designer.cs">
+      <DependentUpon>FrmGetDateAndTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGetMonthAndYear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGetMonthAndYear.designer.cs">
+      <DependentUpon>FrmGetMonthAndYear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGetTwoDates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGetTwoDates.designer.cs">
+      <DependentUpon>FrmGetTwoDates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLoading.designer.cs">
+      <DependentUpon>FrmLoading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMaintainSingleTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMaintainSingleTable.designer.cs">
+      <DependentUpon>FrmMaintainSingleTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMaintainSingleTableMethods.cs" />
+    <Compile Include="FrmMemo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMemo.designer.cs">
+      <DependentUpon>FrmMemo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSelectCoinFunder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSelectCoinFunder.designer.cs">
+      <DependentUpon>FrmSelectCoinFunder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSelectInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSelectInvoice.designer.cs">
+      <DependentUpon>FrmSelectInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSelector.designer.cs">
+      <DependentUpon>FrmSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSelectorMethods.cs" />
+    <Compile Include="FrmStoreSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStoreSelector.designer.cs">
+      <DependentUpon>FrmStoreSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GroupBoxCountMethods.cs" />
+    <Compile Include="GroupBoxVerifiedMethods.cs" />
+    <Compile Include="mysqldata.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mysqldata.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MySQLDataMethods.cs" />
+    <Compile Include="MySQLSynchMethods.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="reportsds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>reportsds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReviewMethods.cs" />
+    <Compile Include="ssprocess.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ssprocess.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="StoreSelectorMethods.cs" />
+    <Compile Include="sysdata.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>sysdata.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VFPAcdata.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VFPAcdata.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VFPArdata.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VFPArdata.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VFPClasses.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AMSECDataSet.xsc">
+      <DependentUpon>AMSECDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AMSECDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AMSECDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AMSECDataSet.xss">
+      <DependentUpon>AMSECDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="atm.xsc">
+      <DependentUpon>atm.xsd</DependentUpon>
+    </None>
+    <None Include="atm.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>atm.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="atm.xss">
+      <DependentUpon>atm.xsd</DependentUpon>
+    </None>
+    <None Include="billingdata.xsc">
+      <DependentUpon>billingdata.xsd</DependentUpon>
+    </None>
+    <None Include="billingdata.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>billingdata.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="billingdata.xss">
+      <DependentUpon>billingdata.xsd</DependentUpon>
+    </None>
+    <None Include="mysqldata.xsc">
+      <DependentUpon>mysqldata.xsd</DependentUpon>
+    </None>
+    <None Include="mysqldata.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>mysqldata.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="mysqldata.xss">
+      <DependentUpon>mysqldata.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\DataSources\ssprocess.datasource" />
+    <None Include="reportsds.xsc">
+      <DependentUpon>reportsds.xsd</DependentUpon>
+    </None>
+    <None Include="reportsds.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>reportsds.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="reportsds.xss">
+      <DependentUpon>reportsds.xsd</DependentUpon>
+    </None>
+    <None Include="ssprocess.xsc">
+      <DependentUpon>ssprocess.xsd</DependentUpon>
+    </None>
+    <None Include="ssprocess.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ssprocess.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ssprocess.xss">
+      <DependentUpon>ssprocess.xsd</DependentUpon>
+    </None>
+    <None Include="sysdata.xsc">
+      <DependentUpon>sysdata.xsd</DependentUpon>
+    </None>
+    <None Include="sysdata.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>sysdata.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="sysdata.xss">
+      <DependentUpon>sysdata.xsd</DependentUpon>
+    </None>
+    <None Include="VFPAcdata.xsc">
+      <DependentUpon>VFPAcdata.xsd</DependentUpon>
+    </None>
+    <None Include="VFPAcdata.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VFPAcdata.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VFPAcdata.xss">
+      <DependentUpon>VFPAcdata.xsd</DependentUpon>
+    </None>
+    <None Include="VFPArdata.xsc">
+      <DependentUpon>VFPArdata.xsd</DependentUpon>
+    </None>
+    <None Include="VFPArdata.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VFPArdata.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VFPArdata.xss">
+      <DependentUpon>VFPArdata.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FrmGetDate.resx">
+      <DependentUpon>FrmGetDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGetDateAndTime.resx">
+      <DependentUpon>FrmGetDateAndTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGetMonthAndYear.resx">
+      <DependentUpon>FrmGetMonthAndYear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGetTwoDates.resx">
+      <DependentUpon>FrmGetTwoDates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLoading.resx">
+      <DependentUpon>FrmLoading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMaintainSingleTable.resx">
+      <DependentUpon>FrmMaintainSingleTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMemo.resx">
+      <DependentUpon>FrmMemo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSelectCoinFunder.resx">
+      <DependentUpon>FrmSelectCoinFunder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSelectInvoice.resx">
+      <DependentUpon>FrmSelectInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSelector.resx">
+      <DependentUpon>FrmSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStoreSelector.resx">
+      <DependentUpon>FrmStoreSelector.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
