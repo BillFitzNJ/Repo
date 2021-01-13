@@ -1,0 +1,168 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="customer" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="customer" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="arcust">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="custno" type="xs:string" minOccurs="0" />
+              <xs:element name="company" type="xs:string" minOccurs="0" />
+              <xs:element name="contact" type="xs:string" minOccurs="0" />
+              <xs:element name="title" type="xs:string" minOccurs="0" />
+              <xs:element name="address1" type="xs:string" minOccurs="0" />
+              <xs:element name="address2" type="xs:string" minOccurs="0" />
+              <xs:element name="city" type="xs:string" minOccurs="0" />
+              <xs:element name="state" type="xs:string" minOccurs="0" />
+              <xs:element name="zip" type="xs:string" minOccurs="0" />
+              <xs:element name="country" type="xs:string" minOccurs="0" />
+              <xs:element name="phone" type="xs:string" minOccurs="0" />
+              <xs:element name="phone2" type="xs:string" minOccurs="0" />
+              <xs:element name="terr" type="xs:string" minOccurs="0" />
+              <xs:element name="indust" type="xs:string" minOccurs="0" />
+              <xs:element name="salesmn" type="xs:string" minOccurs="0" />
+              <xs:element name="source" type="xs:string" minOccurs="0" />
+              <xs:element name="code" type="xs:string" minOccurs="0" />
+              <xs:element name="type" type="xs:string" minOccurs="0" />
+              <xs:element name="pterms" type="xs:string" minOccurs="0" />
+              <xs:element name="pdisc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pdays" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pnet" type="xs:decimal" minOccurs="0" />
+              <xs:element name="svc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tax" type="xs:decimal" minOccurs="0" />
+              <xs:element name="disc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="limit" type="xs:decimal" minOccurs="0" />
+              <xs:element name="gllink" type="xs:string" minOccurs="0" />
+              <xs:element name="comment" type="xs:string" minOccurs="0" />
+              <xs:element name="pricecode" type="xs:string" minOccurs="0" />
+              <xs:element name="taxcode" type="xs:string" minOccurs="0" />
+              <xs:element name="currency" type="xs:string" minOccurs="0" />
+              <xs:element name="dealer" type="xs:string" minOccurs="0" />
+              <xs:element name="faxno" type="xs:string" minOccurs="0" />
+              <xs:element name="taxdist" type="xs:string" minOccurs="0" />
+              <xs:element name="taxtbl" type="xs:string" minOccurs="0" />
+              <xs:element name="email" type="xs:string" minOccurs="0" />
+              <xs:element name="cstmemo" type="xs:string" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="maxdays" type="xs:decimal" minOccurs="0" />
+              <xs:element name="maxdollars" type="xs:decimal" minOccurs="0" />
+              <xs:element name="maxcount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="url" type="xs:string" minOccurs="0" />
+              <xs:element name="shipvia" type="xs:string" minOccurs="0" />
+              <xs:element name="fob" type="xs:string" minOccurs="0" />
+              <xs:element name="stockdisc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="standdisc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="spacing" type="xs:string" minOccurs="0" />
+              <xs:element name="puanchor" type="xs:decimal" minOccurs="0" />
+              <xs:element name="stanchors" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dflange" type="xs:decimal" minOccurs="0" />
+              <xs:element name="scover" type="xs:decimal" minOccurs="0" />
+              <xs:element name="repdisc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="repldisc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="depover1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="depover2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="upcharge" type="xs:decimal" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="emailquote1" type="xs:string" minOccurs="0" />
+              <xs:element name="emailquote2" type="xs:string" minOccurs="0" />
+              <xs:element name="emailinvoice" type="xs:string" minOccurs="0" />
+              <xs:element name="commldisc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="shipdisc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="shipnotes" type="xs:string" minOccurs="0" />
+              <xs:element name="depover0" type="xs:decimal" minOccurs="0" />
+              <xs:element name="depover3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="regsprings" type="xs:decimal" minOccurs="0" />
+              <xs:element name="shortsprings" type="xs:decimal" minOccurs="0" />
+              <xs:element name="HDsprings" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Pipes9" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Pipes18" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Lawnstakes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Lawnpins" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nocable" type="xs:string" minOccurs="0" />
+              <xs:element name="nopump" type="xs:string" minOccurs="0" />
+              <xs:element name="pipesplanters" type="xs:string" minOccurs="0" />
+              <xs:element name="stakesplanters" type="xs:string" minOccurs="0" />
+              <xs:element name="pinsplanters" type="xs:string" minOccurs="0" />
+              <xs:element name="quomeycolite" type="xs:string" minOccurs="0" />
+              <xs:element name="quosoliddrain" type="xs:string" minOccurs="0" />
+              <xs:element name="quosolidpump" type="xs:string" minOccurs="0" />
+              <xs:element name="quoruggedmesh" type="xs:string" minOccurs="0" />
+              <xs:element name="oringsvssnaps" type="xs:string" minOccurs="0" />
+              <xs:element name="perimpadpref" type="xs:string" minOccurs="0" />
+              <xs:element name="acctmemo" type="xs:string" minOccurs="0" />
+              <xs:element name="dpref" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="aracadr">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="custno" type="xs:string" minOccurs="0" />
+              <xs:element name="cshipno" type="xs:string" minOccurs="0" />
+              <xs:element name="defaship" type="xs:string" minOccurs="0" />
+              <xs:element name="company" type="xs:string" minOccurs="0" />
+              <xs:element name="contact" type="xs:string" minOccurs="0" />
+              <xs:element name="title" type="xs:string" minOccurs="0" />
+              <xs:element name="address1" type="xs:string" minOccurs="0" />
+              <xs:element name="address2" type="xs:string" minOccurs="0" />
+              <xs:element name="city" type="xs:string" minOccurs="0" />
+              <xs:element name="state" type="xs:string" minOccurs="0" />
+              <xs:element name="zip" type="xs:string" minOccurs="0" />
+              <xs:element name="country" type="xs:string" minOccurs="0" />
+              <xs:element name="phone" type="xs:string" minOccurs="0" />
+              <xs:element name="tax" type="xs:decimal" minOccurs="0" />
+              <xs:element name="comment" type="xs:string" minOccurs="0" />
+              <xs:element name="faxno" type="xs:string" minOccurs="0" />
+              <xs:element name="taxdist" type="xs:string" minOccurs="0" />
+              <xs:element name="taxtbl" type="xs:string" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="email" type="xs:string" minOccurs="0" />
+              <xs:element name="custid" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_customershiptolist">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="custno" type="xs:string" minOccurs="0" />
+              <xs:element name="cshipno" type="xs:string" minOccurs="0" />
+              <xs:element name="defaship" type="xs:string" minOccurs="0" />
+              <xs:element name="company" type="xs:string" minOccurs="0" />
+              <xs:element name="contact" type="xs:string" minOccurs="0" />
+              <xs:element name="title" type="xs:string" minOccurs="0" />
+              <xs:element name="address1" type="xs:string" minOccurs="0" />
+              <xs:element name="address2" type="xs:string" minOccurs="0" />
+              <xs:element name="city" type="xs:string" minOccurs="0" />
+              <xs:element name="state" type="xs:string" minOccurs="0" />
+              <xs:element name="zip" type="xs:string" minOccurs="0" />
+              <xs:element name="country" type="xs:string" minOccurs="0" />
+              <xs:element name="phone" type="xs:string" minOccurs="0" />
+              <xs:element name="tax" type="xs:decimal" minOccurs="0" />
+              <xs:element name="comment" type="xs:string" minOccurs="0" />
+              <xs:element name="faxno" type="xs:string" minOccurs="0" />
+              <xs:element name="taxdist" type="xs:string" minOccurs="0" />
+              <xs:element name="taxtbl" type="xs:string" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="email" type="xs:string" minOccurs="0" />
+              <xs:element name="custid" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

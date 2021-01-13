@@ -1,0 +1,1278 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="slipsrptds" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="slipsrptds" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="invtrans">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="trandate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="quarters" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dimes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nickels" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pennies" type="xs:decimal" minOccurs="0" />
+              <xs:element name="transactionid" type="xs:int" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckdatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="trantype" type="xs:string" minOccurs="0" />
+              <xs:element name="transnote" type="xs:string" minOccurs="0" />
+              <xs:element name="parenttransid" type="xs:int" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="trandescrip" type="xs:string" minOccurs="0" />
+              <xs:element name="noncash" type="xs:decimal" minOccurs="0" />
+              <xs:element name="adjustnote" type="xs:string" minOccurs="0" />
+              <xs:element name="atmtransid" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="atmdrop">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="store" type="xs:string" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="dropdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="transid" type="xs:int" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckdatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="imported" type="xs:string" minOccurs="0" />
+              <xs:element name="atmid" type="xs:string" minOccurs="0" />
+              <xs:element name="journal" type="xs:string" minOccurs="0" />
+              <xs:element name="wkshtid" type="xs:int" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="trantype" type="xs:string" minOccurs="0" />
+              <xs:element name="dropstatus" type="xs:string" minOccurs="0" />
+              <xs:element name="parenttransid" type="xs:int" minOccurs="0" />
+              <xs:element name="manid" type="xs:int" minOccurs="0" />
+              <xs:element name="erfill" type="xs:string" minOccurs="0" />
+              <xs:element name="todriver" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="atmjournal">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="atmid" type="xs:string" minOccurs="0" />
+              <xs:element name="trantype" type="xs:string" minOccurs="0" />
+              <xs:element name="closedatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="startqty" type="xs:int" minOccurs="0" />
+              <xs:element name="startamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dispqty" type="xs:int" minOccurs="0" />
+              <xs:element name="dispamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="remainqty" type="xs:int" minOccurs="0" />
+              <xs:element name="remainamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="actcash" type="xs:decimal" minOccurs="0" />
+              <xs:element name="transactions" type="xs:int" minOccurs="0" />
+              <xs:element name="rejects" type="xs:int" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="transactionid" type="xs:int" minOccurs="0" />
+              <xs:element name="parenttransid" type="xs:int" minOccurs="0" />
+              <xs:element name="valeachdoc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="imported" type="xs:string" minOccurs="0" />
+              <xs:element name="manid" type="xs:int" minOccurs="0" />
+              <xs:element name="journalstatus" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dropschedule">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="storecode" type="xs:string" minOccurs="0" />
+              <xs:element name="daynumber" type="xs:decimal" minOccurs="0" />
+              <xs:element name="num_drops" type="xs:decimal" minOccurs="0" />
+              <xs:element name="route" type="xs:string" minOccurs="0" />
+              <xs:element name="driver_1" type="xs:string" minOccurs="0" />
+              <xs:element name="condition" type="xs:boolean" minOccurs="0" />
+              <xs:element name="cfrom" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="cthru" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="commission" type="xs:decimal" minOccurs="0" />
+              <xs:element name="each_cycle" type="xs:boolean" minOccurs="0" />
+              <xs:element name="t_when" type="xs:decimal" minOccurs="0" />
+              <xs:element name="schday" type="xs:string" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="addtime" type="xs:string" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lcktime" type="xs:string" minOccurs="0" />
+              <xs:element name="adjustment" type="xs:decimal" minOccurs="0" />
+              <xs:element name="commtype" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="hhpickup">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="storecode" type="xs:string" minOccurs="0" />
+              <xs:element name="sealnumber" type="xs:string" minOccurs="0" />
+              <xs:element name="amount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="pickuptime" type="xs:string" minOccurs="0" />
+              <xs:element name="pickupdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="pickupstatus" type="xs:string" minOccurs="0" />
+              <xs:element name="parentid" type="xs:int" minOccurs="0" />
+              <xs:element name="manid" type="xs:int" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="imported" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="coindrop">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="store" type="xs:string" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="dropdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="quarters" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dimes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nickels" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pennies" type="xs:decimal" minOccurs="0" />
+              <xs:element name="transid" type="xs:int" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckdatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="imported" type="xs:string" minOccurs="0" />
+              <xs:element name="banktrans" type="xs:int" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="filled" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="acstdt01">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="storecode" type="xs:string" minOccurs="0" />
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="bankno" type="xs:string" minOccurs="0" />
+              <xs:element name="account" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="bank">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="name" type="xs:string" minOccurs="0" />
+              <xs:element name="inftpaddress" type="xs:string" minOccurs="0" />
+              <xs:element name="outftpaddress" type="xs:string" minOccurs="0" />
+              <xs:element name="destname" type="xs:string" minOccurs="0" />
+              <xs:element name="inserverport" type="xs:string" minOccurs="0" />
+              <xs:element name="outserverport" type="xs:string" minOccurs="0" />
+              <xs:element name="inusername" type="xs:string" minOccurs="0" />
+              <xs:element name="outusername" type="xs:string" minOccurs="0" />
+              <xs:element name="inpassword" type="xs:string" minOccurs="0" />
+              <xs:element name="outpassword" type="xs:string" minOccurs="0" />
+              <xs:element name="extproc" type="xs:string" minOccurs="0" />
+              <xs:element name="emailaddr" type="xs:string" minOccurs="0" />
+              <xs:element name="citaccount" type="xs:string" minOccurs="0" />
+              <xs:element name="cohaccount" type="xs:string" minOccurs="0" />
+              <xs:element name="branchno" type="xs:string" minOccurs="0" />
+              <xs:element name="rcnum" type="xs:string" minOccurs="0" />
+              <xs:element name="ddasusp" type="xs:string" minOccurs="0" />
+              <xs:element name="atmbank" type="xs:string" minOccurs="0" />
+              <xs:element name="safemain" type="xs:string" minOccurs="0" />
+              <xs:element name="safekeeping" type="xs:string" minOccurs="0" />
+              <xs:element name="pettycash" type="xs:string" minOccurs="0" />
+              <xs:element name="checkreceipt" type="xs:string" minOccurs="0" />
+              <xs:element name="coinreceipt" type="xs:string" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="emailbank">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="emailaddr" type="xs:string" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="moneycenter">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="centername" type="xs:string" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="active" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="bagmandt">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="manifest" type="xs:int" minOccurs="0" />
+              <xs:element name="sealnumber" type="xs:string" minOccurs="0" />
+              <xs:element name="amount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="customer" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="comp_code" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="bagmanhd">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="clientid" type="xs:int" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="comp_code" type="xs:string" minOccurs="0" />
+              <xs:element name="moneycenterid" type="xs:int" minOccurs="0" />
+              <xs:element name="postingdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="driver">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="number" type="xs:string" minOccurs="0" />
+              <xs:element name="firstname" type="xs:string" minOccurs="0" />
+              <xs:element name="initial" type="xs:string" minOccurs="0" />
+              <xs:element name="lastname" type="xs:string" minOccurs="0" />
+              <xs:element name="address" type="xs:string" minOccurs="0" />
+              <xs:element name="city" type="xs:string" minOccurs="0" />
+              <xs:element name="state" type="xs:string" minOccurs="0" />
+              <xs:element name="zip" type="xs:string" minOccurs="0" />
+              <xs:element name="phone" type="xs:string" minOccurs="0" />
+              <xs:element name="p_exclude" type="xs:boolean" minOccurs="0" />
+              <xs:element name="pay_env" type="xs:boolean" minOccurs="0" />
+              <xs:element name="prin_sel" type="xs:boolean" minOccurs="0" />
+              <xs:element name="dtot" type="xs:decimal" minOccurs="0" />
+              <xs:element name="prin_lbl" type="xs:boolean" minOccurs="0" />
+              <xs:element name="prin_env" type="xs:boolean" minOccurs="0" />
+              <xs:element name="sctot" type="xs:boolean" minOccurs="0" />
+              <xs:element name="sptotal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="spdrops" type="xs:string" minOccurs="0" />
+              <xs:element name="slip_type" type="xs:string" minOccurs="0" />
+              <xs:element name="lcktime" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="addtime" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="vendno" type="xs:string" minOccurs="0" />
+              <xs:element name="company" type="xs:string" minOccurs="0" />
+              <xs:element name="extcoin" type="xs:boolean" minOccurs="0" />
+              <xs:element name="hschedcoin" type="xs:boolean" minOccurs="0" />
+              <xs:element name="bulkcoin" type="xs:boolean" minOccurs="0" />
+              <xs:element name="userid" type="xs:string" minOccurs="0" />
+              <xs:element name="emaddr" type="xs:string" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="atmfillcom" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="store">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="storecode" type="xs:string" minOccurs="0" />
+              <xs:element name="active" type="xs:boolean" minOccurs="0" />
+              <xs:element name="store_name" type="xs:string" minOccurs="0" />
+              <xs:element name="f_address" type="xs:string" minOccurs="0" />
+              <xs:element name="f_city" type="xs:string" minOccurs="0" />
+              <xs:element name="f_state" type="xs:string" minOccurs="0" />
+              <xs:element name="f_zip" type="xs:string" minOccurs="0" />
+              <xs:element name="billcycle" type="xs:decimal" minOccurs="0" />
+              <xs:element name="billtype" type="xs:decimal" minOccurs="0" />
+              <xs:element name="attention" type="xs:string" minOccurs="0" />
+              <xs:element name="pu_address" type="xs:string" minOccurs="0" />
+              <xs:element name="d_code" type="xs:string" minOccurs="0" />
+              <xs:element name="d_name" type="xs:string" minOccurs="0" />
+              <xs:element name="d_address" type="xs:string" minOccurs="0" />
+              <xs:element name="rte_base" type="xs:decimal" minOccurs="0" />
+              <xs:element name="phone" type="xs:string" minOccurs="0" />
+              <xs:element name="tax_area" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strap_5" type="xs:decimal" minOccurs="0" />
+              <xs:element name="roll_25" type="xs:decimal" minOccurs="0" />
+              <xs:element name="cg_drp_rt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="chg_bill" type="xs:decimal" minOccurs="0" />
+              <xs:element name="envelope" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sep_dep" type="xs:decimal" minOccurs="0" />
+              <xs:element name="no_bill" type="xs:boolean" minOccurs="0" />
+              <xs:element name="no_slip" type="xs:boolean" minOccurs="0" />
+              <xs:element name="zero_rate" type="xs:boolean" minOccurs="0" />
+              <xs:element name="custno" type="xs:string" minOccurs="0" />
+              <xs:element name="spread_sht" type="xs:boolean" minOccurs="0" />
+              <xs:element name="provider" type="xs:string" minOccurs="0" />
+              <xs:element name="bill_memo" type="xs:string" minOccurs="0" />
+              <xs:element name="bankrupt" type="xs:boolean" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="addtime" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lcktime" type="xs:string" minOccurs="0" />
+              <xs:element name="atmrate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fillrate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="packrate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="flatdrop" type="xs:decimal" minOccurs="0" />
+              <xs:element name="bill_ch_to" type="xs:boolean" minOccurs="0" />
+              <xs:element name="chg_b_cyc" type="xs:boolean" minOccurs="0" />
+              <xs:element name="stop_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="start_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="custcode" type="xs:string" minOccurs="0" />
+              <xs:element name="deporate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="paydlrate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="commamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="salesmn" type="xs:string" minOccurs="0" />
+              <xs:element name="commamt2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="salesmn2" type="xs:string" minOccurs="0" />
+              <xs:element name="atmid" type="xs:string" minOccurs="0" />
+              <xs:element name="sigcoin" type="xs:string" minOccurs="0" />
+              <xs:element name="atmserrate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="efilrate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="company">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="comp_code" type="xs:string" minOccurs="0" />
+              <xs:element name="name" type="xs:string" minOccurs="0" />
+              <xs:element name="address" type="xs:string" minOccurs="0" />
+              <xs:element name="city" type="xs:string" minOccurs="0" />
+              <xs:element name="state" type="xs:string" minOccurs="0" />
+              <xs:element name="zip" type="xs:string" minOccurs="0" />
+              <xs:element name="phone" type="xs:string" minOccurs="0" />
+              <xs:element name="attention" type="xs:string" minOccurs="0" />
+              <xs:element name="billcycle" type="xs:decimal" minOccurs="0" />
+              <xs:element name="label" type="xs:boolean" minOccurs="0" />
+              <xs:element name="holidays" type="xs:string" minOccurs="0" />
+              <xs:element name="net_terms" type="xs:decimal" minOccurs="0" />
+              <xs:element name="showterms" type="xs:boolean" minOccurs="0" />
+              <xs:element name="payee_reg" type="xs:decimal" minOccurs="0" />
+              <xs:element name="payee_chg" type="xs:decimal" minOccurs="0" />
+              <xs:element name="payee_dep" type="xs:decimal" minOccurs="0" />
+              <xs:element name="showstrtax" type="xs:boolean" minOccurs="0" />
+              <xs:element name="address_2" type="xs:string" minOccurs="0" />
+              <xs:element name="bill_memo" type="xs:string" minOccurs="0" />
+              <xs:element name="not_in_chg" type="xs:boolean" minOccurs="0" />
+              <xs:element name="not_in_dep" type="xs:boolean" minOccurs="0" />
+              <xs:element name="label_code" type="xs:string" minOccurs="0" />
+              <xs:element name="taddress" type="xs:string" minOccurs="0" />
+              <xs:element name="prin_sel2" type="xs:boolean" minOccurs="0" />
+              <xs:element name="report" type="xs:string" minOccurs="0" />
+              <xs:element name="lcktime" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="addtime" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="custno" type="xs:string" minOccurs="0" />
+              <xs:element name="ponum" type="xs:string" minOccurs="0" />
+              <xs:element name="contract" type="xs:string" minOccurs="0" />
+              <xs:element name="sigbill" type="xs:boolean" minOccurs="0" />
+              <xs:element name="sigaddr" type="xs:string" minOccurs="0" />
+              <xs:element name="fuel_rate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="parent" type="xs:string" minOccurs="0" />
+              <xs:element name="billcomp" type="xs:string" minOccurs="0" />
+              <xs:element name="sigcbill" type="xs:boolean" minOccurs="0" />
+              <xs:element name="sigdbill" type="xs:boolean" minOccurs="0" />
+              <xs:element name="atmowner" type="xs:boolean" minOccurs="0" />
+              <xs:element name="inactive" type="xs:boolean" minOccurs="0" />
+              <xs:element name="atmslscom" type="xs:decimal" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="balance">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="postdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="mixedcoin" type="xs:decimal" minOccurs="0" />
+              <xs:element name="saidtocontain" type="xs:decimal" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="twos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="foodstamps" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sba" type="xs:decimal" minOccurs="0" />
+              <xs:element name="halves" type="xs:decimal" minOccurs="0" />
+              <xs:element name="quarters" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dimes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nickels" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pennies" type="xs:decimal" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="depdetail">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="transactionid" type="xs:int" minOccurs="0" />
+              <xs:element name="masteraccountid" type="xs:string" minOccurs="0" />
+              <xs:element name="store" type="xs:string" minOccurs="0" />
+              <xs:element name="eventcode" type="xs:string" minOccurs="0" />
+              <xs:element name="sealnumber" type="xs:string" minOccurs="0" />
+              <xs:element name="saidtocontain" type="xs:decimal" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="twos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sba" type="xs:decimal" minOccurs="0" />
+              <xs:element name="halves" type="xs:decimal" minOccurs="0" />
+              <xs:element name="quarters" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dimes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nickels" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pennies" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mixedcoin" type="xs:decimal" minOccurs="0" />
+              <xs:element name="foodstamps" type="xs:decimal" minOccurs="0" />
+              <xs:element name="customerdda" type="xs:string" minOccurs="0" />
+              <xs:element name="postingdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="adjustmentcode" type="xs:string" minOccurs="0" />
+              <xs:element name="depositticketdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="checklist" type="xs:string" minOccurs="0" />
+              <xs:element name="checks" type="xs:decimal" minOccurs="0" />
+              <xs:element name="no_of_checks" type="xs:int" minOccurs="0" />
+              <xs:element name="notes" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="parenttransid" type="xs:int" minOccurs="0" />
+              <xs:element name="adjreason" type="xs:string" minOccurs="0" />
+              <xs:element name="cusdeptype" type="xs:string" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="total_dep" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pickupdate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_ATMDropInvStatus">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="trandate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="drivername" type="xs:string" minOccurs="0" />
+              <xs:element name="store" type="xs:string" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="dropdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="transid" type="xs:int" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckdatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="imported" type="xs:string" minOccurs="0" />
+              <xs:element name="atmid" type="xs:string" minOccurs="0" />
+              <xs:element name="journal" type="xs:string" minOccurs="0" />
+              <xs:element name="wkshtid" type="xs:int" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="trantype" type="xs:string" minOccurs="0" />
+              <xs:element name="dropstatus" type="xs:string" minOccurs="0" />
+              <xs:element name="parenttransid" type="xs:int" minOccurs="0" />
+              <xs:element name="manid" type="xs:int" minOccurs="0" />
+              <xs:element name="erfill" type="xs:string" minOccurs="0" />
+              <xs:element name="todriver" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="store_name" type="xs:string" minOccurs="0" />
+              <xs:element name="f_address" type="xs:string" minOccurs="0" />
+              <xs:element name="f_city" type="xs:string" minOccurs="0" />
+              <xs:element name="f_state" type="xs:string" minOccurs="0" />
+              <xs:element name="f_zip" type="xs:string" minOccurs="0" />
+              <xs:element name="owner" type="xs:string" minOccurs="0" />
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="sheetdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ordnum" type="xs:string" minOccurs="0" />
+              <xs:element name="ordloc" type="xs:string" minOccurs="0" />
+              <xs:element name="sheetstatus" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_DepositedCRV">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="store" type="xs:string" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="dropdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="transid" type="xs:int" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckdatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="imported" type="xs:string" minOccurs="0" />
+              <xs:element name="atmid" type="xs:string" minOccurs="0" />
+              <xs:element name="journal" type="xs:string" minOccurs="0" />
+              <xs:element name="wkshtid" type="xs:int" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="trantype" type="xs:string" minOccurs="0" />
+              <xs:element name="dropstatus" type="xs:string" minOccurs="0" />
+              <xs:element name="parenttransid" type="xs:int" minOccurs="0" />
+              <xs:element name="manid" type="xs:int" minOccurs="0" />
+              <xs:element name="erfill" type="xs:string" minOccurs="0" />
+              <xs:element name="todriver" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="sheetdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ordnum" type="xs:string" minOccurs="0" />
+              <xs:element name="ordloc" type="xs:string" minOccurs="0" />
+              <xs:element name="sheetstatus" type="xs:string" minOccurs="0" />
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="storecode" type="xs:string" minOccurs="0" />
+              <xs:element name="owner" type="xs:string" minOccurs="0" />
+              <xs:element name="depositdate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_ATMDropInvtransDenom">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="store" type="xs:string" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="dropdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="transid" type="xs:int" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckdatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="imported" type="xs:string" minOccurs="0" />
+              <xs:element name="atmid" type="xs:string" minOccurs="0" />
+              <xs:element name="journal" type="xs:string" minOccurs="0" />
+              <xs:element name="wkshtid" type="xs:int" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="trantype" type="xs:string" minOccurs="0" />
+              <xs:element name="dropstatus" type="xs:string" minOccurs="0" />
+              <xs:element name="parenttransid" type="xs:int" minOccurs="0" />
+              <xs:element name="manid" type="xs:int" minOccurs="0" />
+              <xs:element name="erfill" type="xs:string" minOccurs="0" />
+              <xs:element name="todriver" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="sheetstatus" type="xs:string" minOccurs="0" />
+              <xs:element name="sheetdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ordloc" type="xs:string" minOccurs="0" />
+              <xs:element name="ordnum" type="xs:string" minOccurs="0" />
+              <xs:element name="denom" type="xs:int" minOccurs="0" />
+              <xs:element name="amount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="trandate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="trandescrip" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_ActiveATMDrop">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="atmid" type="xs:string" minOccurs="0" />
+              <xs:element name="store" type="xs:string" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="dropdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="wkshtid" type="xs:int" minOccurs="0" />
+              <xs:element name="journal" type="xs:string" minOccurs="0" />
+              <xs:element name="transid" type="xs:int" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sheetstatus" type="xs:string" minOccurs="0" />
+              <xs:element name="sheetdate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_ExpandedATMJournal">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="atmid" type="xs:string" minOccurs="0" />
+              <xs:element name="trantype" type="xs:string" minOccurs="0" />
+              <xs:element name="closedatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="startqty" type="xs:int" minOccurs="0" />
+              <xs:element name="startamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dispqty" type="xs:int" minOccurs="0" />
+              <xs:element name="dispamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="remainqty" type="xs:int" minOccurs="0" />
+              <xs:element name="remainamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="actcash" type="xs:decimal" minOccurs="0" />
+              <xs:element name="transactions" type="xs:int" minOccurs="0" />
+              <xs:element name="rejects" type="xs:int" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="transactionid" type="xs:int" minOccurs="0" />
+              <xs:element name="parenttransid" type="xs:int" minOccurs="0" />
+              <xs:element name="valeachdoc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="imported" type="xs:string" minOccurs="0" />
+              <xs:element name="manid" type="xs:int" minOccurs="0" />
+              <xs:element name="journalstatus" type="xs:string" minOccurs="0" />
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="owner" type="xs:string" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="wkshtid" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_ExpandedATMDrop">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="store" type="xs:string" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="dropdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="transid" type="xs:int" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckdatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="imported" type="xs:string" minOccurs="0" />
+              <xs:element name="atmid" type="xs:string" minOccurs="0" />
+              <xs:element name="journal" type="xs:string" minOccurs="0" />
+              <xs:element name="wkshtid" type="xs:int" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="trantype" type="xs:string" minOccurs="0" />
+              <xs:element name="dropstatus" type="xs:string" minOccurs="0" />
+              <xs:element name="parenttransid" type="xs:int" minOccurs="0" />
+              <xs:element name="manid" type="xs:int" minOccurs="0" />
+              <xs:element name="erfill" type="xs:string" minOccurs="0" />
+              <xs:element name="todriver" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="sheetdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ordnum" type="xs:string" minOccurs="0" />
+              <xs:element name="ordloc" type="xs:string" minOccurs="0" />
+              <xs:element name="sheetstatus" type="xs:string" minOccurs="0" />
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="storecode" type="xs:string" minOccurs="0" />
+              <xs:element name="owner" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_DepositedATMJournal">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="depositdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ordnum" type="xs:string" minOccurs="0" />
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="atmid" type="xs:string" minOccurs="0" />
+              <xs:element name="sheetdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="owner" type="xs:string" minOccurs="0" />
+              <xs:element name="closedatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dropdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="valeachdoc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="manid" type="xs:int" minOccurs="0" />
+              <xs:element name="atmjournalid" type="xs:int" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="wkshtid" type="xs:int" minOccurs="0" />
+              <xs:element name="store" type="xs:string" minOccurs="0" />
+              <xs:element name="startamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dispamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="expamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="remainamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="actcash" type="xs:decimal" minOccurs="0" />
+              <xs:element name="store_name" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_unreturnedcoindrops">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="drivername" type="xs:string" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="trandate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="quarters" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dimes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nickels" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pennies" type="xs:decimal" minOccurs="0" />
+              <xs:element name="transactionid" type="xs:int" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckdatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="trantype" type="xs:string" minOccurs="0" />
+              <xs:element name="transnote" type="xs:string" minOccurs="0" />
+              <xs:element name="parenttransid" type="xs:int" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="trandescrip" type="xs:string" minOccurs="0" />
+              <xs:element name="noncash" type="xs:decimal" minOccurs="0" />
+              <xs:element name="adjustnote" type="xs:string" minOccurs="0" />
+              <xs:element name="atmtransid" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_ATMDropWithStoreAndDriver">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="store" type="xs:string" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="dropdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="transid" type="xs:int" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckdatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="imported" type="xs:string" minOccurs="0" />
+              <xs:element name="atmid" type="xs:string" minOccurs="0" />
+              <xs:element name="journal" type="xs:string" minOccurs="0" />
+              <xs:element name="wkshtid" type="xs:int" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="trantype" type="xs:string" minOccurs="0" />
+              <xs:element name="dropstatus" type="xs:string" minOccurs="0" />
+              <xs:element name="parenttransid" type="xs:int" minOccurs="0" />
+              <xs:element name="manid" type="xs:int" minOccurs="0" />
+              <xs:element name="erfill" type="xs:string" minOccurs="0" />
+              <xs:element name="todriver" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="drivername" type="xs:string" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="store_name" type="xs:string" minOccurs="0" />
+              <xs:element name="f_address" type="xs:string" minOccurs="0" />
+              <xs:element name="f_city" type="xs:string" minOccurs="0" />
+              <xs:element name="f_state" type="xs:string" minOccurs="0" />
+              <xs:element name="f_zip" type="xs:string" minOccurs="0" />
+              <xs:element name="owner" type="xs:string" minOccurs="0" />
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_DenominatedInvtrans">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="trandate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="quarters" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dimes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nickels" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pennies" type="xs:decimal" minOccurs="0" />
+              <xs:element name="transactionid" type="xs:int" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckdatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="trantype" type="xs:string" minOccurs="0" />
+              <xs:element name="transnote" type="xs:string" minOccurs="0" />
+              <xs:element name="parenttransid" type="xs:int" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="trandescrip" type="xs:string" minOccurs="0" />
+              <xs:element name="noncash" type="xs:decimal" minOccurs="0" />
+              <xs:element name="adjustnote" type="xs:string" minOccurs="0" />
+              <xs:element name="atmtransid" type="xs:int" minOccurs="0" />
+              <xs:element name="denom" type="xs:int" minOccurs="0" />
+              <xs:element name="amount" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_UnimportedATMJournal">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="atmid" type="xs:string" minOccurs="0" />
+              <xs:element name="transactionid" type="xs:int" minOccurs="0" />
+              <xs:element name="actcash" type="xs:decimal" minOccurs="0" />
+              <xs:element name="valeachdoc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_DenominatedBalance">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="postdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="mixedcoin" type="xs:decimal" minOccurs="0" />
+              <xs:element name="saidtocontain" type="xs:decimal" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="twos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="foodstamps" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sba" type="xs:decimal" minOccurs="0" />
+              <xs:element name="halves" type="xs:decimal" minOccurs="0" />
+              <xs:element name="quarters" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dimes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nickels" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pennies" type="xs:decimal" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="denom" type="xs:int" minOccurs="0" />
+              <xs:element name="amount" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_drivercoinsummary">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="dropdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="imported" type="xs:string" minOccurs="0" />
+              <xs:element name="filled" type="xs:string" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="quarters" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dimes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nickels" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pennies" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_expandedcoindrop">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="drivername" type="xs:string" minOccurs="0" />
+              <xs:element name="bulkcoin" type="xs:boolean" minOccurs="0" />
+              <xs:element name="store_name" type="xs:string" minOccurs="0" />
+              <xs:element name="f_address" type="xs:string" minOccurs="0" />
+              <xs:element name="sigcoin" type="xs:string" minOccurs="0" />
+              <xs:element name="store" type="xs:string" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="dropdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="quarters" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dimes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nickels" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pennies" type="xs:decimal" minOccurs="0" />
+              <xs:element name="transid" type="xs:int" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckdatetime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="imported" type="xs:string" minOccurs="0" />
+              <xs:element name="banktrans" type="xs:int" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="filled" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_expandedhhpickup">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="storecode" type="xs:string" minOccurs="0" />
+              <xs:element name="sealnumber" type="xs:string" minOccurs="0" />
+              <xs:element name="amount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="pickuptime" type="xs:string" minOccurs="0" />
+              <xs:element name="pickupdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="pickupstatus" type="xs:string" minOccurs="0" />
+              <xs:element name="parentid" type="xs:int" minOccurs="0" />
+              <xs:element name="manid" type="xs:int" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="imported" type="xs:string" minOccurs="0" />
+              <xs:element name="store_name" type="xs:string" minOccurs="0" />
+              <xs:element name="companyname" type="xs:string" minOccurs="0" />
+              <xs:element name="f_address" type="xs:string" minOccurs="0" />
+              <xs:element name="firstname" type="xs:string" minOccurs="0" />
+              <xs:element name="lastname" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_coinroute">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="driver_1" type="xs:string" minOccurs="0" />
+              <xs:element name="store" type="xs:string" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="store_name" type="xs:string" minOccurs="0" />
+              <xs:element name="storelocation" type="xs:string" minOccurs="0" />
+              <xs:element name="f_address" type="xs:string" minOccurs="0" />
+              <xs:element name="f_city" type="xs:string" minOccurs="0" />
+              <xs:element name="f_state" type="xs:string" minOccurs="0" />
+              <xs:element name="f_zip" type="xs:string" minOccurs="0" />
+              <xs:element name="transid" type="xs:int" minOccurs="0" />
+              <xs:element name="processed" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_driverdata">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="number" type="xs:string" minOccurs="0" />
+              <xs:element name="firstname" type="xs:string" minOccurs="0" />
+              <xs:element name="initial" type="xs:string" minOccurs="0" />
+              <xs:element name="lastname" type="xs:string" minOccurs="0" />
+              <xs:element name="address" type="xs:string" minOccurs="0" />
+              <xs:element name="city" type="xs:string" minOccurs="0" />
+              <xs:element name="state" type="xs:string" minOccurs="0" />
+              <xs:element name="zip" type="xs:string" minOccurs="0" />
+              <xs:element name="bulkcoin" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_expandeddriver">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="fullname" type="xs:string" minOccurs="0" />
+              <xs:element name="number" type="xs:string" minOccurs="0" />
+              <xs:element name="firstname" type="xs:string" minOccurs="0" />
+              <xs:element name="initial" type="xs:string" minOccurs="0" />
+              <xs:element name="lastname" type="xs:string" minOccurs="0" />
+              <xs:element name="address" type="xs:string" minOccurs="0" />
+              <xs:element name="city" type="xs:string" minOccurs="0" />
+              <xs:element name="state" type="xs:string" minOccurs="0" />
+              <xs:element name="zip" type="xs:string" minOccurs="0" />
+              <xs:element name="phone" type="xs:string" minOccurs="0" />
+              <xs:element name="p_exclude" type="xs:boolean" minOccurs="0" />
+              <xs:element name="pay_env" type="xs:boolean" minOccurs="0" />
+              <xs:element name="prin_sel" type="xs:boolean" minOccurs="0" />
+              <xs:element name="dtot" type="xs:decimal" minOccurs="0" />
+              <xs:element name="prin_lbl" type="xs:boolean" minOccurs="0" />
+              <xs:element name="prin_env" type="xs:boolean" minOccurs="0" />
+              <xs:element name="sctot" type="xs:boolean" minOccurs="0" />
+              <xs:element name="sptotal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="spdrops" type="xs:string" minOccurs="0" />
+              <xs:element name="slip_type" type="xs:string" minOccurs="0" />
+              <xs:element name="lcktime" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="addtime" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="vendno" type="xs:string" minOccurs="0" />
+              <xs:element name="company" type="xs:string" minOccurs="0" />
+              <xs:element name="extcoin" type="xs:boolean" minOccurs="0" />
+              <xs:element name="hschedcoin" type="xs:boolean" minOccurs="0" />
+              <xs:element name="bulkcoin" type="xs:boolean" minOccurs="0" />
+              <xs:element name="userid" type="xs:string" minOccurs="0" />
+              <xs:element name="emaddr" type="xs:string" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="atmfillcom" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_mathinvtrans">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="bankfedid" type="xs:string" minOccurs="0" />
+              <xs:element name="trandate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="driver" type="xs:string" minOccurs="0" />
+              <xs:element name="trandescrip" type="xs:string" minOccurs="0" />
+              <xs:element name="transnote" type="xs:string" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="quarters" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dimes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nickels" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pennies" type="xs:decimal" minOccurs="0" />
+              <xs:element name="noncash" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_proofsheet">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="rectype" type="xs:string" minOccurs="0" />
+              <xs:element name="descrip" type="xs:string" minOccurs="0" />
+              <xs:element name="hundreds" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fiftys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="twentys" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tens" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fives" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ones" type="xs:decimal" minOccurs="0" />
+              <xs:element name="quarters" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dimes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="nickels" type="xs:decimal" minOccurs="0" />
+              <xs:element name="pennies" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_expandedbagmandt">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="manifest" type="xs:int" minOccurs="0" />
+              <xs:element name="sealnumber" type="xs:string" minOccurs="0" />
+              <xs:element name="amount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="idcol" type="xs:int" minOccurs="0" />
+              <xs:element name="customer" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="comp_code" type="xs:string" minOccurs="0" />
+              <xs:element name="centername" type="xs:string" minOccurs="0" />
+              <xs:element name="postingdate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_expandedslipsdata">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="driver_1" type="xs:string" minOccurs="0" />
+              <xs:element name="slip_day" type="xs:string" minOccurs="0" />
+              <xs:element name="drivername" type="xs:string" minOccurs="0" />
+              <xs:element name="slip_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="store_name" type="xs:string" minOccurs="0" />
+              <xs:element name="pu_address" type="xs:string" minOccurs="0" />
+              <xs:element name="phone" type="xs:string" minOccurs="0" />
+              <xs:element name="d_name" type="xs:string" minOccurs="0" />
+              <xs:element name="d_address" type="xs:string" minOccurs="0" />
+              <xs:element name="storecode" type="xs:string" minOccurs="0" />
+              <xs:element name="slipno" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="view_doublelipsdata">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="driver_1_1" type="xs:string" minOccurs="0" />
+              <xs:element name="slip_day_1" type="xs:string" minOccurs="0" />
+              <xs:element name="drivername_1" type="xs:string" minOccurs="0" />
+              <xs:element name="slip_date_1" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="store_name_1" type="xs:string" minOccurs="0" />
+              <xs:element name="pu_address_1" type="xs:string" minOccurs="0" />
+              <xs:element name="phone_1" type="xs:string" minOccurs="0" />
+              <xs:element name="d_name_1" type="xs:string" minOccurs="0" />
+              <xs:element name="d_address_1" type="xs:string" minOccurs="0" />
+              <xs:element name="storecode_1" type="xs:string" minOccurs="0" />
+              <xs:element name="slipno_1" type="xs:int" minOccurs="0" />
+              <xs:element name="driver_1_2" type="xs:string" minOccurs="0" />
+              <xs:element name="slip_day_2" type="xs:string" minOccurs="0" />
+              <xs:element name="drivername_2" type="xs:string" minOccurs="0" />
+              <xs:element name="slip_date_2" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="store_name_2" type="xs:string" minOccurs="0" />
+              <xs:element name="pu_address_2" type="xs:string" minOccurs="0" />
+              <xs:element name="phone_2" type="xs:string" minOccurs="0" />
+              <xs:element name="d_name_2" type="xs:string" minOccurs="0" />
+              <xs:element name="d_address_2" type="xs:string" minOccurs="0" />
+              <xs:element name="storecode_2" type="xs:string" minOccurs="0" />
+              <xs:element name="slipno_2" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="acstore">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="storecode" type="xs:string" minOccurs="0" />
+              <xs:element name="active" type="xs:boolean" minOccurs="0" />
+              <xs:element name="store_name" type="xs:string" minOccurs="0" />
+              <xs:element name="f_address" type="xs:string" minOccurs="0" />
+              <xs:element name="f_city" type="xs:string" minOccurs="0" />
+              <xs:element name="f_state" type="xs:string" minOccurs="0" />
+              <xs:element name="f_zip" type="xs:string" minOccurs="0" />
+              <xs:element name="billcycle" type="xs:decimal" minOccurs="0" />
+              <xs:element name="billtype" type="xs:decimal" minOccurs="0" />
+              <xs:element name="attention" type="xs:string" minOccurs="0" />
+              <xs:element name="pu_address" type="xs:string" minOccurs="0" />
+              <xs:element name="d_code" type="xs:string" minOccurs="0" />
+              <xs:element name="d_name" type="xs:string" minOccurs="0" />
+              <xs:element name="d_address" type="xs:string" minOccurs="0" />
+              <xs:element name="rte_base" type="xs:decimal" minOccurs="0" />
+              <xs:element name="phone" type="xs:string" minOccurs="0" />
+              <xs:element name="tax_area" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strap_5" type="xs:decimal" minOccurs="0" />
+              <xs:element name="roll_25" type="xs:decimal" minOccurs="0" />
+              <xs:element name="cg_drp_rt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="chg_bill" type="xs:decimal" minOccurs="0" />
+              <xs:element name="envelope" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sep_dep" type="xs:decimal" minOccurs="0" />
+              <xs:element name="no_bill" type="xs:boolean" minOccurs="0" />
+              <xs:element name="no_slip" type="xs:boolean" minOccurs="0" />
+              <xs:element name="zero_rate" type="xs:boolean" minOccurs="0" />
+              <xs:element name="custno" type="xs:string" minOccurs="0" />
+              <xs:element name="spread_sht" type="xs:boolean" minOccurs="0" />
+              <xs:element name="provider" type="xs:string" minOccurs="0" />
+              <xs:element name="bill_memo" type="xs:string" minOccurs="0" />
+              <xs:element name="bankrupt" type="xs:boolean" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="addtime" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lcktime" type="xs:string" minOccurs="0" />
+              <xs:element name="atmrate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="fillrate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="packrate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="flatdrop" type="xs:decimal" minOccurs="0" />
+              <xs:element name="bill_ch_to" type="xs:boolean" minOccurs="0" />
+              <xs:element name="chg_b_cyc" type="xs:boolean" minOccurs="0" />
+              <xs:element name="stop_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="start_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="custcode" type="xs:string" minOccurs="0" />
+              <xs:element name="deporate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="paydlrate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="commamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="salesmn" type="xs:string" minOccurs="0" />
+              <xs:element name="commamt2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="salesmn2" type="xs:string" minOccurs="0" />
+              <xs:element name="atmid" type="xs:string" minOccurs="0" />
+              <xs:element name="sigcoin" type="xs:string" minOccurs="0" />
+              <xs:element name="atmserrate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="efilrate" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="acdriver">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="number" type="xs:string" minOccurs="0" />
+              <xs:element name="firstname" type="xs:string" minOccurs="0" />
+              <xs:element name="initial" type="xs:string" minOccurs="0" />
+              <xs:element name="lastname" type="xs:string" minOccurs="0" />
+              <xs:element name="address" type="xs:string" minOccurs="0" />
+              <xs:element name="city" type="xs:string" minOccurs="0" />
+              <xs:element name="state" type="xs:string" minOccurs="0" />
+              <xs:element name="zip" type="xs:string" minOccurs="0" />
+              <xs:element name="phone" type="xs:string" minOccurs="0" />
+              <xs:element name="p_exclude" type="xs:boolean" minOccurs="0" />
+              <xs:element name="pay_env" type="xs:boolean" minOccurs="0" />
+              <xs:element name="prin_sel" type="xs:boolean" minOccurs="0" />
+              <xs:element name="dtot" type="xs:decimal" minOccurs="0" />
+              <xs:element name="prin_lbl" type="xs:boolean" minOccurs="0" />
+              <xs:element name="prin_env" type="xs:boolean" minOccurs="0" />
+              <xs:element name="sctot" type="xs:boolean" minOccurs="0" />
+              <xs:element name="sptotal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="spdrops" type="xs:string" minOccurs="0" />
+              <xs:element name="slip_type" type="xs:string" minOccurs="0" />
+              <xs:element name="lcktime" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="addtime" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="vendno" type="xs:string" minOccurs="0" />
+              <xs:element name="company" type="xs:string" minOccurs="0" />
+              <xs:element name="extcoin" type="xs:boolean" minOccurs="0" />
+              <xs:element name="hschedcoin" type="xs:boolean" minOccurs="0" />
+              <xs:element name="bulkcoin" type="xs:boolean" minOccurs="0" />
+              <xs:element name="userid" type="xs:string" minOccurs="0" />
+              <xs:element name="emaddr" type="xs:string" minOccurs="0" />
+              <xs:element name="atmfillcom" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="acslips">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="storecode" type="xs:string" minOccurs="0" />
+              <xs:element name="slip_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="slip_day" type="xs:string" minOccurs="0" />
+              <xs:element name="route" type="xs:string" minOccurs="0" />
+              <xs:element name="driver_1" type="xs:string" minOccurs="0" />
+              <xs:element name="num_drops" type="xs:decimal" minOccurs="0" />
+              <xs:element name="slip_type" type="xs:string" minOccurs="0" />
+              <xs:element name="commission" type="xs:decimal" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="addtime" type="xs:string" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lcktime" type="xs:string" minOccurs="0" />
+              <xs:element name="billtype" type="xs:decimal" minOccurs="0" />
+              <xs:element name="slipno" type="xs:decimal" minOccurs="0" />
+              <xs:element name="adjustment" type="xs:decimal" minOccurs="0" />
+              <xs:element name="chgcode" type="xs:string" minOccurs="0" />
+              <xs:element name="trancode" type="xs:string" minOccurs="0" />
+              <xs:element name="commtype" type="xs:string" minOccurs="0" />
+              <xs:element name="commdate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

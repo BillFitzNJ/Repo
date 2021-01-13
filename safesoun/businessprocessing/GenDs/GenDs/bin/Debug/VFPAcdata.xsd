@@ -1,0 +1,92 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="VFPAcdata" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="VFPAcdata" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="slips">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="storecode" type="xs:string" minOccurs="0" />
+              <xs:element name="slip_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="slip_day" type="xs:string" minOccurs="0" />
+              <xs:element name="route" type="xs:string" minOccurs="0" />
+              <xs:element name="driver_1" type="xs:string" minOccurs="0" />
+              <xs:element name="num_drops" type="xs:decimal" minOccurs="0" />
+              <xs:element name="slip_type" type="xs:string" minOccurs="0" />
+              <xs:element name="commission" type="xs:decimal" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="addtime" type="xs:string" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lcktime" type="xs:string" minOccurs="0" />
+              <xs:element name="billtype" type="xs:decimal" minOccurs="0" />
+              <xs:element name="slipno" type="xs:decimal" minOccurs="0" />
+              <xs:element name="adjustment" type="xs:decimal" minOccurs="0" />
+              <xs:element name="chgcode" type="xs:string" minOccurs="0" />
+              <xs:element name="trancode" type="xs:string" minOccurs="0" />
+              <xs:element name="commtype" type="xs:string" minOccurs="0" />
+              <xs:element name="commdate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="bills">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="inv_number" type="xs:string" minOccurs="0" />
+              <xs:element name="inv_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="storecode" type="xs:string" minOccurs="0" />
+              <xs:element name="slip_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="rate_base" type="xs:decimal" minOccurs="0" />
+              <xs:element name="num_drops" type="xs:decimal" minOccurs="0" />
+              <xs:element name="charged" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tax_rate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="processed" type="xs:boolean" minOccurs="0" />
+              <xs:element name="billcycle" type="xs:decimal" minOccurs="0" />
+              <xs:element name="billtype" type="xs:decimal" minOccurs="0" />
+              <xs:element name="printed" type="xs:boolean" minOccurs="0" />
+              <xs:element name="bill_type" type="xs:string" minOccurs="0" />
+              <xs:element name="tax_area" type="xs:decimal" minOccurs="0" />
+              <xs:element name="e_code" type="xs:string" minOccurs="0" />
+              <xs:element name="deposubtot" type="xs:boolean" minOccurs="0" />
+              <xs:element name="slipid" type="xs:string" minOccurs="0" />
+              <xs:element name="billid" type="xs:string" minOccurs="0" />
+              <xs:element name="lcktime" type="xs:string" minOccurs="0" />
+              <xs:element name="lckdate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lckuser" type="xs:string" minOccurs="0" />
+              <xs:element name="lckstat" type="xs:string" minOccurs="0" />
+              <xs:element name="addtime" type="xs:string" minOccurs="0" />
+              <xs:element name="adddate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="adduser" type="xs:string" minOccurs="0" />
+              <xs:element name="bill_store" type="xs:string" minOccurs="0" />
+              <xs:element name="bill_group" type="xs:string" minOccurs="0" />
+              <xs:element name="billstat" type="xs:string" minOccurs="0" />
+              <xs:element name="trancode" type="xs:string" minOccurs="0" />
+              <xs:element name="storetxbl" type="xs:decimal" minOccurs="0" />
+              <xs:element name="storetax" type="xs:decimal" minOccurs="0" />
+              <xs:element name="rapidamt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="atmid" type="xs:string" minOccurs="0" />
+              <xs:element name="atmcomp" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="billsummary">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="storecode" type="xs:string" minOccurs="0" />
+              <xs:element name="inv_number" type="xs:string" minOccurs="0" />
+              <xs:element name="inv_date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="rate_base" type="xs:decimal" minOccurs="0" />
+              <xs:element name="charged" type="xs:decimal" minOccurs="0" />
+              <xs:element name="bill_type" type="xs:string" minOccurs="0" />
+              <xs:element name="bill_group" type="xs:string" minOccurs="0" />
+              <xs:element name="num_drops" type="xs:decimal" minOccurs="0" />
+              <xs:element name="storetax" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

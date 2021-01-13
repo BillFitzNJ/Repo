@@ -1,0 +1,8 @@
+C:\c#projects\GenerateTypedDataSet\GenerateTypedDataSet\obj\Debug\ResolveAssemblyReference.cache
+C:\c#projects\GenerateTypedDataSet\GenerateTypedDataSet\obj\Debug\GenerateTypedDataSet.Properties.Resources.resources
+C:\c#projects\GenerateTypedDataSet\GenerateTypedDataSet\obj\Debug\GenerateTypedDataSet.csproj.GenerateResource.Cache
+C:\c#projects\GenerateTypedDataSet\GenerateTypedDataSet\bin\Debug\GenerateTypedDataSet.exe
+C:\c#projects\GenerateTypedDataSet\GenerateTypedDataSet\bin\Debug\GenerateTypedDataSet.pdb
+C:\c#projects\GenerateTypedDataSet\GenerateTypedDataSet\obj\Debug\GenerateTypedDataSet.exe
+C:\c#projects\GenerateTypedDataSet\GenerateTypedDataSet\obj\Debug\GenerateTypedDataSet.pdb
+C:\c#projects\GenerateTypedDataSet\GenerateTypedDataSet\obj\Debug\GenerateTypedDataSet.FrmGenerateTypedDataSet.resources
